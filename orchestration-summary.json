@@ -1,0 +1,214 @@
+{
+  "skillProvenance": {
+    "name": "solo-design",
+    "version": "2026.07.06.8",
+    "version_source": "skill-version.json",
+    "runtime_skill_dir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+    "recorded_at": "2026-07-18T16:30:00.000Z"
+  },
+  "project": {
+    "name": "声浪SoundWave - 国内音频采样平台",
+    "path": "d:\\音乐采样网址\\soundwave",
+    "operation": "create",
+    "deviceType": "desktop",
+    "language": "zh-CN",
+    "dashboardMode": false,
+    "intentProfile": {
+      "caseFamily": "library_bound",
+      "graphicStrategy": null,
+      "sourceType": null,
+      "routingReason": "Active Design Library (苹果) + open-ended page creation for audio sample website"
+    },
+    "replicationMode": null,
+    "sourceUrl": null,
+    "designRead": "showcase landing / creative platform / editorial calm / medium density / risk: dense card walls",
+    "designDials": {
+      "layoutVariance": 3,
+      "motionIntensity": 2,
+      "visualDensity": 3
+    },
+    "styleDefinitionBrief": null,
+    "styleContinuityAnchors": null
+  },
+  "designSource": {
+    "operatingMode": "library-bound",
+    "libraryIdentity": {
+      "name": "极简",
+      "id": "dl_builtin_minimalist",
+      "version": null,
+      "scope": "built-in-global",
+      "path": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_minimalist",
+      "versionSource": "selected-context"
+    },
+    "libraryPath": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple",
+    "cssFilePath": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\colors_and_type.css",
+    "brandPrefix": "apple",
+    "themeMode": "dark",
+    "designDecisionSummary": "Dark theme, primary accent apple-brand-500 (#007aff), DM Sans typography, pill-shaped buttons, soft radius 19.2px, whisper-light shadows, editorial calm voice. Dark backgrounds (#000000, #1c1c1e) with light text (#f5f5f7). Audio/music platform with premium feel.",
+    "componentContractKind": "legacy-json",
+    "forbiddenInventedComponents": [],
+    "allowedComponents": ["button", "card", "comparison-table", "input", "navigation", "product-grid"],
+    "styleConstraints": {
+      "radiusMax": 19.2,
+      "spacingBase": 3.84,
+      "fontSizeBody": 14,
+      "controlHeightDefault": 36,
+      "controlHeightLarge": 44
+    },
+    "productContext": {
+      "kitType": "app",
+      "productType": "consumer imaging product ecosystem adapted for audio sampling platform"
+    },
+    "actualTokenNameReference": [
+      {"semanticPurpose": "Primary background", "tokenName": "apple-background-900"},
+      {"semanticPurpose": "Card surface", "tokenName": "apple-background-800"},
+      {"semanticPurpose": "Page background dark", "tokenName": "apple-background-900"},
+      {"semanticPurpose": "Primary text", "tokenName": "apple-foreground"},
+      {"semanticPurpose": "Secondary/muted text", "tokenName": "apple-text-500"},
+      {"semanticPurpose": "Primary CTA/accent", "tokenName": "apple-brand-500"},
+      {"semanticPurpose": "Border/divider", "tokenName": "apple-border"},
+      {"semanticPurpose": "Input background", "tokenName": "apple-input"},
+      {"semanticPurpose": "Success state", "tokenName": "apple-state-success"},
+      {"semanticPurpose": "Error state", "tokenName": "apple-state-error"},
+      {"semanticPurpose": "Muted foreground", "tokenName": "apple-muted-foreground"},
+      {"semanticPurpose": "Primary (dark)", "tokenName": "apple-primary"},
+      {"semanticPurpose": "Background-200", "tokenName": "apple-background-200"}
+    ],
+    "iconAssets": {
+      "source": "assets/icons",
+      "projectIconDir": "assets/icons/apple",
+      "libraryKey": "apple",
+      "renderMethod": "css-mask",
+      "pathTemplate": "../assets/icons/apple/{name}.svg",
+      "availableNames": ["arrow-down", "arrow-left", "arrow-right", "arrow-up", "box", "check", "chevron-down", "chevron-left", "chevron-right", "chevron-up", "chevrons-down-up", "chevrons-up-down", "circle-alert", "circle-check", "circle-minus", "circle-pause", "circle-play", "circle-plus", "circle-question-mark", "external-link", "file", "folder-open", "folder", "funnel", "grip", "heart", "house", "mail", "map-pin", "message-circle-more", "mouse-pointer-click", "pen-line", "send-horizontal", "star", "tag", "thumbs-down", "thumbs-up", "trash-2", "triangle-alert", "user"],
+      "totalCount": 40,
+      "coloringRule": "currentColor by default"
+    }
+  },
+  "pages": [
+    {
+      "nodeId": "page-index",
+      "slug": "index",
+      "title": "首页",
+      "htmlSrc": "pages/index.html",
+      "pageIndex": 1,
+      "stateGroupId": null,
+      "stateRole": null,
+      "baseStatePageId": null,
+      "sharedShellContract": [],
+      "mutableRegions": [],
+      "derivedFromHtmlSrc": null,
+      "derivationType": "original",
+      "sourcePageId": null,
+      "sourceHtmlSrc": null,
+      "pageType": "showcase",
+      "viewportMode": "document-scroll",
+      "businessScenario": "Product landing - hero with featured sounds, genre browsing, creator tools, trust signals, CTA",
+      "visualNorthStar": "Dark cinematic audio platform: bold hero with sound waveform visuals, genre tabs for instant browsing, product cards for creator tools, trust badges for royalty-free assurance",
+      "compositionPattern": "Showcase Hero-First: cinematic dark hero with genre tab bar → featured sound pack cards → creator tools section → trust badges → global footer",
+      "continuityAnchors": ["dark-background-base", "pill-primary-cta", "brand-500-accent", "DM-Sans-typography"],
+      "libraryRestraintMode": true,
+      "uiKitPath": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\ui_kits\\website\\index.html",
+      "componentPlan": [
+        {"slug": "navigation", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-navigation.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\navigation.json"},
+        {"slug": "button", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-button.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\button.json"},
+        {"slug": "card", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-card.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\card.json"},
+        {"slug": "input", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-input.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\input.json"},
+        {"slug": "product-grid", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-product-grid.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\product-grid.json"}
+      ],
+      "imagePlan": ["hero-waveform.png", "pack-hiphop.png", "pack-electronic.png", "pack-lofi.png"],
+      "chartsRequired": false,
+      "miniProgramStyle": false,
+      "qualityRisks": ["CJK heading length", "dark-mode contrast"]
+    },
+    {
+      "nodeId": "page-sounds",
+      "slug": "sounds",
+      "title": "声音浏览",
+      "htmlSrc": "pages/sounds.html",
+      "pageIndex": 2,
+      "stateGroupId": null,
+      "stateRole": null,
+      "baseStatePageId": null,
+      "sharedShellContract": [],
+      "mutableRegions": [],
+      "derivedFromHtmlSrc": null,
+      "derivationType": "original",
+      "sourcePageId": null,
+      "sourceHtmlSrc": null,
+      "pageType": "information-dense",
+      "viewportMode": "document-scroll",
+      "businessScenario": "Sound browsing - search bar, genre/instrument filter chips, sample cards with inline play, trust signals",
+      "visualNorthStar": "Audio-centric browsing interface: prominent search, genre chips as horizontal scroll, sample cards with waveform previews and inline play buttons, clean grid layout",
+      "compositionPattern": "Content-Dense Browse: search hero → dual filter chip rows (genre + instrument) → responsive sample card grid → trust badges → footer",
+      "continuityAnchors": ["dark-background-base", "pill-primary-cta", "brand-500-accent", "DM-Sans-typography"],
+      "libraryRestraintMode": true,
+      "uiKitPath": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\ui_kits\\website\\index.html",
+      "componentPlan": [
+        {"slug": "navigation", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-navigation.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\navigation.json"},
+        {"slug": "button", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-button.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\button.json"},
+        {"slug": "card", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-card.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\card.json"},
+        {"slug": "input", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-input.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\input.json"},
+        {"slug": "product-grid", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-product-grid.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\product-grid.json"}
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "miniProgramStyle": false,
+      "qualityRisks": ["dense card grid", "CJK labels in chips"]
+    },
+    {
+      "nodeId": "page-pricing",
+      "slug": "pricing",
+      "title": "定价方案",
+      "htmlSrc": "pages/pricing.html",
+      "pageIndex": 3,
+      "stateGroupId": null,
+      "stateRole": null,
+      "baseStatePageId": null,
+      "sharedShellContract": [],
+      "mutableRegions": [],
+      "derivedFromHtmlSrc": null,
+      "derivationType": "original",
+      "sourcePageId": null,
+      "sourceHtmlSrc": null,
+      "pageType": "information-dense",
+      "viewportMode": "document-scroll",
+      "businessScenario": "Pricing plans - hero section with value proposition, 3 plan tiers as cards, how-it-works steps, FAQ accordion, footer CTA",
+      "visualNorthStar": "Clean conversion page: bold hero with price lead-in, 3 tier cards with clear differentiation, numbered how-it-works, expandable FAQ, and persistent CTA",
+      "compositionPattern": "Conversion Vertical: pricing hero with headline and price → 3 plan tier cards → how-it-works numbered steps → FAQ accordion → footer CTA",
+      "continuityAnchors": ["dark-background-base", "pill-primary-cta", "brand-500-accent", "DM-Sans-typography"],
+      "libraryRestraintMode": true,
+      "uiKitPath": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\ui_kits\\website\\index.html",
+      "componentPlan": [
+        {"slug": "navigation", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-navigation.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\navigation.json"},
+        {"slug": "button", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-button.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\button.json"},
+        {"slug": "card", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-card.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\card.json"},
+        {"slug": "comparison-table", "previewFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\preview\\component-comparison-table.html", "contractFile": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_apple\\components\\comparison-table.json"}
+      ],
+      "imagePlan": [],
+      "chartsRequired": false,
+      "miniProgramStyle": false,
+      "qualityRisks": ["pricing table density", "CJK FAQ text"]
+    }
+  ],
+  "assets": [
+    {"filename": "hero-waveform.png", "role": "critical-hero", "owningPage": "index", "semanticDescription": "Dark cinematic waveform visual for homepage hero", "status": "planned"},
+    {"filename": "pack-hiphop.png", "role": "supporting-content", "owningPage": "index", "semanticDescription": "Hip-hop sample pack artwork", "status": "planned"},
+    {"filename": "pack-electronic.png", "role": "supporting-content", "owningPage": "index", "semanticDescription": "Electronic sample pack artwork", "status": "planned"},
+    {"filename": "pack-lofi.png", "role": "supporting-content", "owningPage": "index", "semanticDescription": "Lo-fi sample pack artwork", "status": "planned"}
+  ],
+  "wiringPlan": [
+    {"sourceNodeId": "page-index", "domId": "cta-sounds", "targetPageId": "page-sounds"},
+    {"sourceNodeId": "page-sounds", "domId": "cta-pricing", "targetPageId": "page-pricing"}
+  ],
+  "hiddenInteractionPlan": [
+    {"sourceNodeId": "page-index", "domId": "nav-sounds", "targetPageId": "page-sounds", "hideEdge": true, "reason": "global nav"},
+    {"sourceNodeId": "page-index", "domId": "nav-pricing", "targetPageId": "page-pricing", "hideEdge": true, "reason": "global nav"},
+    {"sourceNodeId": "page-index", "domId": "cta-pricing", "targetPageId": "page-pricing", "hideEdge": true, "reason": "secondary CTA"},
+    {"sourceNodeId": "page-sounds", "domId": "nav-home", "targetPageId": "page-index", "hideEdge": true, "reason": "global nav"},
+    {"sourceNodeId": "page-sounds", "domId": "nav-pricing", "targetPageId": "page-pricing", "hideEdge": true, "reason": "global nav"},
+    {"sourceNodeId": "page-pricing", "domId": "nav-home", "targetPageId": "page-index", "hideEdge": true, "reason": "global nav"},
+    {"sourceNodeId": "page-pricing", "domId": "nav-sounds", "targetPageId": "page-sounds", "hideEdge": true, "reason": "global nav"},
+    {"sourceNodeId": "page-pricing", "domId": "cta-sounds", "targetPageId": "page-sounds", "hideEdge": true, "reason": "secondary CTA"}
+  ]
+}

@@ -1,0 +1,36 @@
+0 verbose cli D:\node.exe D:\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.12.1
+2 info using node@v24.15.0
+3 silly config load:file:D:\node_modules\npm\npmrc
+4 silly config load:file:D:\音乐采样网址\soundwave\.npmrc
+5 silly config load:file:C:\Users\Administrator\.npmrc
+6 silly config load:file:C:\Users\Administrator\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install
+8 verbose argv "install" "--cache" ".\\.npm-cache" "--registry" "https://registry.npmmirror.com"
+9 verbose logfile logs-max:10 dir:D:\音乐采样网址\soundwave\.npm-cache\_logs\2026-07-18T15_53_36_129Z-
+10 verbose logfile D:\音乐采样网址\soundwave\.npm-cache\_logs\2026-07-18T15_53_36_129Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:2348810240 maxSize:587202560 maxEntrySize:293601280
+13 http fetch GET https://registry.npmmirror.com/npm attempt 1 failed with EACCES
+14 silly idealTree buildDeps
+15 silly fetch manifest @tailwindcss/postcss@^4.1.11
+16 silly packumentCache full:https://registry.npmmirror.com/@tailwindcss%2fpostcss cache-miss
+17 http fetch GET https://registry.npmmirror.com/@tailwindcss%2fpostcss attempt 1 failed with EACCES
+18 http fetch GET https://registry.npmmirror.com/npm attempt 2 failed with EACCES
+19 http fetch GET https://registry.npmmirror.com/@tailwindcss%2fpostcss attempt 2 failed with EACCES
+20 http fetch GET https://registry.npmmirror.com/npm attempt 3 failed with EACCES
+21 http fetch GET https://registry.npmmirror.com/@tailwindcss%2fpostcss attempt 3 failed with EACCES
+22 silly fetch manifest framer-motion@^12.23.6
+23 silly packumentCache full:https://registry.npmmirror.com/framer-motion cache-miss
+24 http fetch GET https://registry.npmmirror.com/framer-motion attempt 1 failed with EACCES
+25 http fetch GET https://registry.npmmirror.com/framer-motion attempt 2 failed with EACCES
+26 http fetch GET https://registry.npmmirror.com/framer-motion attempt 3 failed with EACCES
+27 silly fetch manifest lucide-react@^0.468.0
+28 silly packumentCache full:https://registry.npmmirror.com/lucide-react cache-miss
+29 http fetch GET https://registry.npmmirror.com/lucide-react attempt 1 failed with EACCES
+30 http fetch GET https://registry.npmmirror.com/lucide-react attempt 2 failed with EACCES
+31 http fetch GET https://registry.npmmirror.com/lucide-react attempt 3 failed with EACCES
+32 silly fetch manifest next@^15.4.2
+33 silly packumentCache full:https://registry.npmmirror.com/next cache-miss
+34 http fetch GET https://registry.npmmirror.com/next attempt 1 failed with EACCES
+35 http fetch GET https://registry.npmmirror.com/next attempt 2 failed with EACCES

@@ -1,0 +1,210 @@
+{
+  "data": [
+    {
+      "id": "page-index",
+      "title": "首页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752858000000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/index.html",
+        "interactions": [
+          {
+            "domId": "cta-sounds",
+            "targetPageId": "page-sounds",
+            "transitionLabel": "浏览声音"
+          },
+          {
+            "domId": "nav-sounds",
+            "targetPageId": "page-sounds",
+            "hideEdge": true,
+            "transitionLabel": "声音库"
+          },
+          {
+            "domId": "nav-pricing",
+            "targetPageId": "page-pricing",
+            "hideEdge": true,
+            "transitionLabel": "定价方案"
+          },
+          {
+            "domId": "cta-pricing",
+            "targetPageId": "page-pricing",
+            "hideEdge": true,
+            "transitionLabel": "查看定价"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-dashboard",
+      "title": "首页(新版)",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752858200000,
+      "canvasData": {
+        "x": 0,
+        "y": 713,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/dashboard.html",
+        "interactions": [
+          {
+            "domId": "cta-sounds",
+            "targetPageId": "page-sounds",
+            "transitionLabel": "声音库"
+          },
+          {
+            "domId": "nav-pricing",
+            "targetPageId": "page-pricing",
+            "hideEdge": true,
+            "transitionLabel": "定价方案"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-sounds",
+      "title": "声音浏览",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752858001000,
+      "canvasData": {
+        "x": 620,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/sounds.html",
+        "interactions": [
+          {
+            "domId": "cta-pricing",
+            "targetPageId": "page-pricing",
+            "transitionLabel": "查看定价"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-pricing",
+            "targetPageId": "page-pricing",
+            "hideEdge": true,
+            "transitionLabel": "定价方案"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-pricing",
+      "title": "定价方案",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1752858002000,
+      "canvasData": {
+        "x": 1240,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/pricing.html",
+        "interactions": [
+          {
+            "domId": "cta-sounds",
+            "targetPageId": "page-sounds",
+            "hideEdge": true,
+            "transitionLabel": "浏览声音"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-index",
+            "hideEdge": true,
+            "transitionLabel": "首页"
+          },
+          {
+            "domId": "nav-sounds",
+            "targetPageId": "page-sounds",
+            "hideEdge": true,
+            "transitionLabel": "声音库"
+          }
+        ]
+      }
+    },
+    {
+      "id": "image-001",
+      "title": "主视觉波形",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1752858100000,
+      "canvasData": {
+        "x": 0,
+        "y": 1092
+      },
+      "devMetadata": {
+        "imageSrc": "assets/hero-waveform.jpg"
+      }
+    },
+    {
+      "id": "image-002",
+      "title": "嘻哈采样包封面",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1752858101000,
+      "canvasData": {
+        "x": 620,
+        "y": 1092
+      },
+      "devMetadata": {
+        "imageSrc": "assets/pack-hiphop.jpg"
+      }
+    },
+    {
+      "id": "image-003",
+      "title": "电子采样包封面",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1752858102000,
+      "canvasData": {
+        "x": 1240,
+        "y": 1092
+      },
+      "devMetadata": {
+        "imageSrc": "assets/pack-electronic.jpg"
+      }
+    },
+    {
+      "id": "image-004",
+      "title": "Lo-fi采样包封面",
+      "type": "image",
+      "version": 1,
+      "createdAt": 1752858103000,
+      "canvasData": {
+        "x": 1860,
+        "y": 1092
+      },
+      "devMetadata": {
+        "imageSrc": "assets/pack-lofi.jpg"
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "desktop",
+    "projectName": "声浪SoundWave - 国内音频采样平台",
+    "designLibrary": {
+      "name": "极简",
+      "id": "dl_builtin_minimalist",
+      "version": null,
+      "scope": "built-in-global",
+      "path": "c:\\Users\\Administrator\\.trae-cn\\design_libraries\\dl_builtin_minimalist",
+      "versionSource": "selected-context"
+    }
+  }
+}

@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoundWave Preview</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --sw-bg: #201d23;
+      --sw-glass-border: rgba(255,255,255,.18);
+      --sw-text: #f8fbff;
+      --sw-muted: rgba(255,255,255,.64);
+      --sw-cyan: #7df9ff;
+      --sw-purple: #b59cff;
+      --sw-green: #9cff6d;
+      --sw-blur: blur(30px) saturate(135%);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--sw-bg);
+      color: var(--sw-text);
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      letter-spacing: 0;
+    }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    .bg {
+      position: fixed;
+      inset: -18px;
+      background: url("public/assets/home-material.png") center / cover no-repeat;
+      filter: blur(7px);
+      opacity: .45;
+      transform: scale(1.04);
+    }
+    .wash {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 28% 18%, rgba(255,196,141,.24), transparent 26%),
+        radial-gradient(circle at 78% 18%, rgba(168,85,247,.18), transparent 24%),
+        linear-gradient(180deg, rgba(7,7,13,.38), rgba(7,7,13,.88));
+    }
+    .app {
+      position: relative;
+      z-index: 1;
+      max-width: 1240px;
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 32px 28px;
+    }
+    .glass, .panel, .search, .profile, .icon, .pill.active {
+      border: 1px solid var(--sw-glass-border);
+      background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.08));
+      box-shadow: 0 24px 60px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.18);
+      backdrop-filter: var(--sw-blur);
+    }
+    .top {
+      display: grid;
+      grid-template-columns: 260px 1fr 220px;
+      align-items: center;
+      gap: 22px;
+      margin-bottom: 28px;
+    }
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      color: rgba(255,255,255,.86);
+    }
+    .search input {
+      width: 100%;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: white;
+      font-weight: 700;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      overflow: hidden;
+      color: rgba(255,255,255,.86);
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .pill {
+      display: inline-flex;
+      min-width: 84px;
+      height: 48px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .right-tools {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+    .icon {
+      position: relative;
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border-radius: 999px;
+    }
+    .dot {
+      position: absolute;
+      right: 9px;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--sw-green);
+      box-shadow: 0 0 16px rgba(156,255,109,.9);
+    }
+    .profile {
+      display: flex;
+      min-width: 158px;
+      height: 48px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-radius: 999px;
+      padding: 0 14px 0 10px;
+    }
+    .avatar {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(255,255,255,.86);
+      color: #77727b;
+      font-weight: 900;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 265px 1fr;
+      gap: 22px;
+    }
+    .side {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .panel {
+      border-radius: 28px;
+      padding: 24px;
+    }
+    .panel.new { height: 415px; overflow: hidden; }
+    .panel.progress { min-height: 275px; }
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    h2, h3, p { margin: 0; }
+    .sort { color: rgba(255,255,255,.55); font-size: 11px; }
+    .drop-list { display: grid; gap: 12px; }
+    .drop {
+      position: relative;
+      height: 145px;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+    .drop img, .hero img, .rec img, .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .shade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(0deg, rgba(0,0,0,.8), rgba(0,0,0,.18), transparent);
+    }
+    .drop-body {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .tag { margin-bottom: 4px; color: #ccf9ff; font-size: 10px; font-weight: 800; }
+    .drop h3 { max-width: 150px; font-size: 14px; line-height: 1.12; }
+    .play-dot, .mini-play, .card-play {
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,.8);
+      color: #5d5961;
+    }
+    .play-dot { width: 26px; height: 26px; }
+    .mini-play { width: 26px; height: 26px; background: rgba(255,255,255,.2); color: white; }
+    .progress-list { display: grid; gap: 13px; }
+    .progress-row {
+      display: grid;
+      grid-template-columns: 54px 1fr 26px;
+      align-items: center;
+      gap: 12px;
+    }
+    .thumb {
+      width: 54px;
+      height: 48px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+    .progress-row h3 { overflow: hidden; font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+    .progress-row p { margin-top: 4px; color: rgba(255,255,255,.55); font-size: 9px; }
+    .hero {
+      position: relative;
+      min-height: 418px;
+      overflow: hidden;
+      border-radius: 28px;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      min-height: 418px;
+      max-width: 535px;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 34px 28px;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(90deg, rgba(0,0,0,.76), rgba(0,0,0,.38), rgba(0,0,0,.08));
+      pointer-events: none;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      z-index: 1;
+      height: 52%;
+      background: linear-gradient(0deg, rgba(0,0,0,.7), transparent);
+      pointer-events: none;
+    }
+    .trend {
+      align-self: flex-start;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      padding: 9px 16px;
+      font-size: 12px;
+      font-weight: 800;
+      backdrop-filter: blur(20px);
+    }
+    .hero-tags {
+      display: flex;
+      gap: 9px;
+      margin-bottom: 18px;
+    }
+    .hero-tags span {
+      border-radius: 999px;
+      background: rgba(255,255,255,.18);
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: 800;
+      backdrop-filter: blur(20px);
+    }
+    .hero h1 {
+      max-width: 470px;
+      font-size: 42px;
+      font-weight: 650;
+      line-height: .98;
+      letter-spacing: 0;
+    }
+    .hero p {
+      max-width: 500px;
+      margin-top: 16px;
+      color: rgba(255,255,255,.76);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .hero-ui {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      top: 20px;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 12px;
+    }
+    .hero-search {
+      display: flex;
+      height: 44px;
+      align-items: center;
+      gap: 10px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.24);
+      padding: 0 16px;
+      color: rgba(255,255,255,.7);
+      backdrop-filter: blur(20px);
+    }
+    .hero-search input {
+      min-width: 0;
+      flex: 1;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: white;
+    }
+    .hero-tags-live {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .hero-tags-live button,
+    .hero-sound {
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      color: rgba(255,255,255,.82);
+      padding: 10px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      backdrop-filter: blur(20px);
+    }
+    .hero-sounds {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .hero-sound {
+      border-radius: 14px;
+      background: rgba(0,0,0,.28);
+      text-align: left;
+    }
+    .hero-sound small {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,.52);
+    }
+    .hero-sound b {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .action {
+      display: inline-flex;
+      height: 48px;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,.85);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: white;
+      padding: 0 28px;
+      backdrop-filter: blur(20px);
+    }
+    .action.primary {
+      border: 0;
+      background: white;
+      color: #252129;
+    }
+    .round {
+      width: 48px;
+      padding: 0;
+      justify-content: center;
+    }
+    .arrows {
+      position: absolute;
+      z-index: 2;
+      right: 28px;
+      bottom: 28px;
+      display: flex;
+      gap: 12px;
+    }
+    .arrow {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,.22);
+      color: white;
+      backdrop-filter: blur(20px);
+    }
+    .likes {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 16px 0;
+    }
+    .likes h2 { font-size: 20px; }
+    .see { border: 0; border-radius: 999px; background: rgba(255,255,255,.2); color: white; padding: 5px 12px; font-size: 9px; font-weight: 800; }
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+    .rec {
+      position: relative;
+      height: 238px;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.22);
+    }
+    .more {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      display: grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,.28);
+      color: white;
+      backdrop-filter: blur(20px);
+    }
+    .rec-body {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 18px;
+    }
+    .rec-label { color: rgba(255,255,255,.72); font-size: 12px; }
+    .rec h3 { margin-top: 8px; font-size: 18px; line-height: 1.12; }
+    .rec p { max-width: 145px; margin-top: 8px; color: rgba(255,255,255,.68); font-size: 11px; line-height: 1.35; }
+    .card-play {
+      position: absolute;
+      right: 16px;
+      bottom: 18px;
+      width: 48px;
+      height: 48px;
+      background: white;
+      color: #29252d;
+    }
+    .refresh {
+      position: fixed;
+      z-index: 2;
+      right: 18px;
+      bottom: 18px;
+    }
+    .filters {
+      margin-bottom: 22px;
+      padding: 12px 14px;
+      border-radius: 24px;
+    }
+    .filters-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+    .filter-title {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      border-radius: 999px;
+      background: rgba(0,0,0,.18);
+      padding: 8px 12px;
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .filter-group small {
+      color: rgba(255,255,255,.5);
+      font-weight: 800;
+    }
+    .chip {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,.07);
+      color: rgba(255,255,255,.72);
+      padding: 7px 12px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .chip.active {
+      border-color: rgba(255,255,255,.6);
+      background: rgba(255,255,255,.86);
+      color: #221f28;
+    }
+    .sample-browser {
+      margin-top: 22px;
+      border-radius: 28px;
+      padding: 20px;
+    }
+    .browser-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+    .browser-head p { margin-top: 5px; color: rgba(255,255,255,.52); font-size: 12px; }
+    .similar {
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      color: rgba(255,255,255,.78);
+      padding: 10px 14px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .sample-list { display: grid; gap: 8px; }
+    .sample-row {
+      display: grid;
+      grid-template-columns: 34px minmax(120px, 1.1fr) minmax(120px,.9fr) 70px 76px 74px 42px 34px 34px;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      background: rgba(255,255,255,.055);
+      padding: 10px 12px;
+    }
+    .sample-row.active {
+      border-color: rgba(125,249,255,.5);
+      background: rgba(125,249,255,.11);
+    }
+    .sample-row h3 { overflow: hidden; font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+    .sample-row p { margin-top: 4px; overflow: hidden; color: rgba(255,255,255,.48); font-size: 11px; text-overflow: ellipsis; white-space: nowrap; }
+    .row-play, .row-icon {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,.14);
+      color: white;
+    }
+    .row-play { background: white; color: #24202a; }
+    .row-icon.liked { color: #ffb4cf; }
+    .mini-wave {
+      display: flex;
+      height: 32px;
+      align-items: center;
+      gap: 3px;
+    }
+    .mini-wave span {
+      width: 4px;
+      border-radius: 999px;
+      background: rgba(204,249,255,.72);
+    }
+    .toast {
+      position: fixed;
+      left: 18px;
+      bottom: 18px;
+      z-index: 2;
+      max-width: 360px;
+      border-radius: 20px;
+      padding: 16px;
+    }
+    .toast h3 {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 14px;
+    }
+    .toast p {
+      margin-top: 8px;
+      color: rgba(255,255,255,.58);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .toast .note {
+      color: rgba(204,249,255,.82);
+      font-size: 11px;
+    }
+    @media (max-width: 980px) {
+      .top, .grid { grid-template-columns: 1fr; }
+      .right-tools { justify-content: flex-start; }
+      .rec-grid { grid-template-columns: repeat(2, 1fr); }
+      .sample-row { grid-template-columns: 34px minmax(120px,1fr) 42px 34px 34px; }
+      .sample-row .hide-md, .mini-wave { display: none; }
+      .toast { display: none; }
+    }
+    @media (max-width: 620px) {
+      .app { padding: 22px 16px; }
+      .tabs { justify-content: flex-start; }
+      .hero h1 { font-size: 34px; }
+      .rec-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="wash"></div>
+  <main class="app">
+    <header class="top">
+      <label class="search">
+        <span>⌕</span>
+        <input id="searchInput" placeholder="搜索采样、Loop、BPM、Key">
+      </label>
+      <nav class="tabs">
+        <span class="pill active">采样库</span>
+        <span class="pill">教程</span>
+        <span class="pill">创作</span>
+        <span class="pill">灵感</span>
+        <span class="pill">短 Loop</span>
+      </nav>
+      <div class="right-tools">
+        <button class="icon">♩<span class="dot"></span></button>
+        <button class="profile">
+          <span style="display:flex;align-items:center;gap:12px"><span class="avatar">◔</span><span style="text-align:left"><b style="display:block;font-size:14px;line-height:1">unknown</b><small style="color:rgba(255,255,255,.58);font-size:9px">制作人</small></span></span>
+          <span>⌄</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="filters glass">
+      <div class="filters-wrap">
+        <span class="filter-title">☷ 筛选</span>
+        <div class="filter-group"><small>类型</small><button class="chip active" data-filter="Loop">Loop</button><button class="chip" data-filter="One Shot">One Shot</button><button class="chip" data-filter="MIDI">MIDI</button></div>
+        <div class="filter-group"><small>风格</small><button class="chip active" data-filter="Lofi">Lofi</button><button class="chip" data-filter="Chill">Chill</button><button class="chip" data-filter="Trap">Trap</button></div>
+        <div class="filter-group"><small>乐器</small><button class="chip" data-filter="鼓组">鼓组</button><button class="chip" data-filter="键盘">键盘</button><button class="chip" data-filter="人声">人声</button></div>
+        <div class="filter-group"><small>BPM</small><button class="chip" data-filter="70-90">70-90</button><button class="chip" data-filter="90-110">90-110</button></div>
+        <button class="chip" id="clearFilters" style="margin-left:auto">清空 2</button>
+      </div>
+    </section>
+
+    <section class="grid">
+      <aside class="side">
+        <div class="panel new">
+          <div class="panel-head"><h2>新鲜上架</h2><span class="sort">排序 <b style="color:white">今日</b></span></div>
+          <div class="drop-list">
+            <article class="drop"><img src="public/assets/pack-lofi.jpg" alt=""><div class="shade"></div><div class="drop-body"><div><p class="tag">新上架</p><h3>天台 Lofi 鼓组</h3></div><button class="play-dot">▶</button></div></article>
+            <article class="drop"><img src="public/assets/pack-electronic.jpg" alt=""><div class="shade"></div><div class="drop-body"><div><p class="tag">热门</p><h3>霓虹 Chill 吉他</h3></div><button class="play-dot">▶</button></div></article>
+            <article class="drop"><img src="public/assets/pack-hiphop.jpg" alt=""><div class="shade"></div><div class="drop-body"><div><p class="tag">Club</p><h3>夜班车 808 低音</h3></div><button class="play-dot">▶</button></div></article>
+          </div>
+        </div>
+
+        <div class="panel progress">
+          <h2 style="margin-bottom:18px">继续挖掘</h2>
+          <div class="progress-list">
+            <article class="progress-row"><div class="thumb"><img src="public/assets/pack-lofi.jpg" alt=""></div><div><h3>雨夜键盘</h3><p>已收藏 55%</p></div><button class="mini-play">▶</button></article>
+            <article class="progress-row"><div class="thumb"><img src="public/assets/pack-electronic.jpg" alt=""></div><div><h3>未来人声</h3><p>已收藏 13%</p></div><button class="mini-play">▶</button></article>
+            <article class="progress-row"><div class="thumb"><img src="public/assets/pack-hiphop.jpg" alt=""></div><div><h3>中文 Trap 鼓</h3><p>已收藏 67%</p></div><button class="mini-play">▶</button></article>
+            <article class="progress-row"><div class="thumb"><img src="public/assets/hero-waveform.jpg" alt=""></div><div><h3>黑胶质感</h3><p>已收藏 31%</p></div><button class="mini-play">▶</button></article>
+          </div>
+        </div>
+      </aside>
+
+      <div>
+        <article class="hero glass">
+          <img src="public/assets/pack-electronic.jpg" alt="">
+          <div class="hero-ui">
+            <label class="hero-search"><span>⌕</span><input id="heroSearch" placeholder="在包内搜索 Loop"></label>
+            <div class="hero-tags-live"><button data-hero-filter="鼓组">鼓组</button><button data-hero-filter="人声">人声</button><button data-hero-filter="氛围">氛围</button></div>
+            <div class="hero-sounds">
+              <button class="hero-sound" data-hero-sound="dusty-keys"><small>82 BPM <span>▶</span></small><b>雨夜 Rhodes Loop</b></button>
+              <button class="hero-sound" data-hero-sound="neon-vocal"><small>96 BPM <span>▶</span></small><b>霓虹人声切片</b></button>
+              <button class="hero-sound" data-hero-sound="bus-808"><small>74 BPM <span>▶</span></small><b>夜班车 808</b></button>
+              <button class="hero-sound" data-hero-sound="soft-drums"><small>88 BPM <span>▶</span></small><b>松弛鼓组 Loop</b></button>
+            </div>
+          </div>
+          <div class="hero-content">
+            <span class="trend">🔥 趋势采样包</span>
+            <div class="hero-tags"><span>Lofi</span><span>Chill</span></div>
+            <h1>午夜 Loop：穿过 SoundWave</h1>
+            <p>为年轻制作人精选的灵感起手包：柔和键盘、松弛鼓组、黑胶颗粒和未来感纹理，随时接入你的下一段 Beat。</p>
+            <div class="actions">
+              <button class="action primary">▶ 开始</button>
+              <button class="action">▯ 收藏包</button>
+              <button class="action round">▯</button>
+            </div>
+          </div>
+          <div class="arrows"><button class="arrow">‹</button><button class="arrow">›</button></div>
+        </article>
+
+        <div class="likes"><h2>猜你喜欢</h2><button class="see">查看全部</button></div>
+        <div class="rec-grid">
+          <article class="rec"><img src="public/assets/pack-lofi.jpg" alt=""><div class="shade"></div><button class="more">•••</button><div class="rec-body"><span class="rec-label">编辑精选</span><h3>胶片 Lofi</h3><p>带灰尘感的钢琴 Loop</p></div><button class="card-play">▶</button></article>
+          <article class="rec"><img src="public/assets/hero-waveform.jpg" alt=""><div class="shade"></div><button class="more">•••</button><div class="rec-body"><span class="rec-label">动画感</span><h3>流动合成器</h3><p>未来合成器与流动和弦</p></div><button class="card-play">▶</button></article>
+          <article class="rec"><img src="public/assets/pack-electronic.jpg" alt=""><div class="shade"></div><button class="more">•••</button><div class="rec-body"><span class="rec-label">效果器</span><h3>夜色氛围</h3><p>适合深夜节拍的 Chill 纹理</p></div><button class="card-play">▶</button></article>
+          <article class="rec"><img src="public/assets/pricing-material.png" alt=""><div class="shade"></div><button class="more">•••</button><div class="rec-body"><span class="rec-label">编辑精选</span><h3>中文流行梦境</h3><p>国语流行 Loop 起手包</p></div><button class="card-play">▶</button></article>
+        </div>
+
+        <section class="sample-browser glass">
+          <div class="browser-head">
+            <div>
+              <h2>采样浏览器</h2>
+              <p>搜索、筛选、试听、收藏、下载和查找相似声音</p>
+            </div>
+            <button class="similar" id="similarBtn">✦ 相似声音</button>
+          </div>
+          <div class="sample-list" id="sampleList"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <button class="icon refresh">↻</button>
+  <aside class="toast glass">
+    <h3>♫ 当前试听：<span id="toastTitle">雨夜 Rhodes Loop</span></h3>
+    <p id="toastMeta">Late Night Lofi · Loop · 82 BPM · A minor</p>
+    <p class="note" id="toastNote">已同步采样浏览交互</p>
+  </aside>
+  <script>
+    const sounds = [
+      { id: "dusty-keys", title: "雨夜 Rhodes Loop", pack: "Late Night Lofi", type: "Loop", bpm: 82, key: "A minor", tags: ["Lofi", "键盘"], length: "0:16" },
+      { id: "neon-vocal", title: "霓虹人声切片", pack: "Future Alley", type: "One Shot", bpm: 96, key: "C major", tags: ["Chill", "人声"], length: "0:04" },
+      { id: "bus-808", title: "夜班车 808", pack: "CN Street Drums", type: "One Shot", bpm: 74, key: "D minor", tags: ["Trap", "贝斯"], length: "0:03" },
+      { id: "soft-drums", title: "松弛鼓组 Loop", pack: "Late Night Lofi", type: "Loop", bpm: 88, key: "A minor", tags: ["Lofi", "鼓组"], length: "0:12" }
+    ];
+    let activeFilters = ["Loop", "Lofi"];
+    let playingId = "dusty-keys";
+    let likedIds = new Set(["dusty-keys"]);
+    let selectedId = "dusty-keys";
+
+    const sampleList = document.getElementById("sampleList");
+    const searchInput = document.getElementById("searchInput");
+    const clearFilters = document.getElementById("clearFilters");
+    const toastTitle = document.getElementById("toastTitle");
+    const toastMeta = document.getElementById("toastMeta");
+    const toastNote = document.getElementById("toastNote");
+
+    function waveBars(sound) {
+      return Array.from({ length: 18 }, (_, index) => `<span style="height:${26 + ((index * 19 + sound.bpm) % 45)}%;opacity:${playingId === sound.id ? .9 : .45}"></span>`).join("");
+    }
+
+    function matches(sound) {
+      const q = searchInput.value.trim().toLowerCase();
+      const haystack = [sound.title, sound.pack, sound.type, sound.key, ...sound.tags].join(" ").toLowerCase();
+      const searchOk = !q || haystack.includes(q);
+      const filterOk = activeFilters.length === 0 || activeFilters.some(filter => sound.type === filter || sound.key === filter || sound.tags.includes(filter) || (filter === "70-90" && sound.bpm >= 70 && sound.bpm <= 90) || (filter === "90-110" && sound.bpm >= 90 && sound.bpm <= 110));
+      return searchOk && filterOk;
+    }
+
+    function updateToast(sound, note) {
+      toastTitle.textContent = sound.title;
+      toastMeta.textContent = `${sound.pack} · ${sound.type} · ${sound.bpm} BPM · ${sound.key}`;
+      toastNote.textContent = note;
+    }
+
+    function render() {
+      document.querySelectorAll(".chip[data-filter]").forEach(button => button.classList.toggle("active", activeFilters.includes(button.dataset.filter)));
+      clearFilters.textContent = `清空 ${activeFilters.length}`;
+      const visible = sounds.filter(matches);
+      sampleList.innerHTML = visible.map(sound => `
+        <article class="sample-row ${selectedId === sound.id ? "active" : ""}" data-id="${sound.id}">
+          <button class="row-play" data-action="play">${playingId === sound.id ? "❚❚" : "▶"}</button>
+          <div><h3>${sound.title}</h3><p>${sound.pack}</p></div>
+          <div class="mini-wave hide-md">${waveBars(sound)}</div>
+          <span class="hide-md" style="font-size:12px;color:rgba(255,255,255,.58)">${sound.type}</span>
+          <span class="hide-md" style="font-size:12px;color:rgba(255,255,255,.58)">${sound.bpm} BPM</span>
+          <span class="hide-md" style="font-size:12px;color:rgba(255,255,255,.58)">${sound.key}</span>
+          <span style="font-size:12px;color:rgba(255,255,255,.58)">${sound.length}</span>
+          <button class="row-icon ${likedIds.has(sound.id) ? "liked" : ""}" data-action="like">${likedIds.has(sound.id) ? "♥" : "♡"}</button>
+          <button class="row-icon" data-action="download">⇩</button>
+        </article>
+      `).join("") || `<p style="padding:14px;color:rgba(255,255,255,.58)">没有匹配的采样，试试清空筛选。</p>`;
+    }
+
+    document.querySelectorAll(".chip[data-filter]").forEach(button => {
+      button.addEventListener("click", () => {
+        const value = button.dataset.filter;
+        activeFilters = activeFilters.includes(value) ? activeFilters.filter(item => item !== value) : [...activeFilters, value];
+        render();
+      });
+    });
+    clearFilters.addEventListener("click", () => { activeFilters = []; render(); });
+    searchInput.addEventListener("input", render);
+    document.getElementById("similarBtn").addEventListener("click", () => {
+      const sound = sounds.find(item => item.id === selectedId) || sounds[0];
+      updateToast(sound, "已根据当前声音查找相似采样");
+    });
+    document.getElementById("heroSearch").addEventListener("input", event => {
+      searchInput.value = event.target.value;
+      render();
+    });
+    document.querySelector(".hero").addEventListener("click", event => {
+      const soundButton = event.target.closest("[data-hero-sound]");
+      const filterButton = event.target.closest("[data-hero-filter]");
+      const actionButton = event.target.closest("button");
+
+      if (soundButton) {
+        const sound = sounds.find(item => item.id === soundButton.dataset.heroSound);
+        selectedId = sound.id;
+        playingId = playingId === sound.id ? "" : sound.id;
+        updateToast(sound, playingId ? `正在试听：${sound.title}` : "已暂停试听");
+        render();
+        return;
+      }
+
+      if (filterButton) {
+        const value = filterButton.dataset.heroFilter;
+        activeFilters = activeFilters.includes(value) ? activeFilters.filter(item => item !== value) : [...activeFilters, value];
+        render();
+        return;
+      }
+
+      if (!actionButton) return;
+      const sound = sounds.find(item => item.id === selectedId) || sounds[0];
+      if (actionButton.classList.contains("primary")) {
+        playingId = sound.id;
+        updateToast(sound, "正在试听趋势采样包");
+      } else if (actionButton.classList.contains("arrow")) {
+        updateToast(sound, actionButton.textContent.includes("›") ? "已切换到下一组推荐" : "已切换到上一组推荐");
+      } else if (actionButton.classList.contains("action")) {
+        updateToast(sound, "已收藏趋势采样包");
+      }
+      render();
+    });
+    sampleList.addEventListener("click", event => {
+      const row = event.target.closest(".sample-row");
+      if (!row) return;
+      const sound = sounds.find(item => item.id === row.dataset.id);
+      const action = event.target.closest("button")?.dataset.action;
+      selectedId = sound.id;
+      if (action === "play") {
+        playingId = playingId === sound.id ? "" : sound.id;
+        updateToast(sound, playingId ? `正在试听：${sound.title}` : "已暂停试听");
+      } else if (action === "like") {
+        likedIds.has(sound.id) ? likedIds.delete(sound.id) : likedIds.add(sound.id);
+        updateToast(sound, likedIds.has(sound.id) ? "已加入收藏" : "已取消收藏");
+      } else if (action === "download") {
+        updateToast(sound, `已加入下载队列：${sound.title}`);
+      } else {
+        updateToast(sound, "已打开采样详情，可继续播放或找相似声音");
+      }
+      render();
+    });
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>声浪SoundWave - 声音库</title>
+
+  <style id="theme-vars">
+/*
+ * Apple Design Library - Brand tokens
+ * Theme: dark
+ */
+:root {
+  --apple-background: var(--background, #ffffff);
+  --apple-foreground: var(--foreground, #0f172a);
+  --apple-card: var(--card, var(--background));
+  --apple-card-foreground: var(--card-foreground, var(--foreground));
+  --apple-popover: var(--popover, var(--card));
+  --apple-popover-foreground: var(--popover-foreground, var(--card-foreground, var(--foreground)));
+  --apple-primary: var(--primary, #111827);
+  --apple-primary-foreground: var(--primary-foreground, #ffffff);
+  --apple-secondary: var(--secondary, var(--muted, var(--card)));
+  --apple-secondary-foreground: var(--secondary-foreground, var(--foreground));
+  --apple-muted: var(--muted, var(--card));
+  --apple-muted-foreground: var(--muted-foreground, var(--foreground));
+  --apple-accent: var(--accent, var(--secondary, var(--muted, var(--card))));
+  --apple-accent-foreground: var(--accent-foreground, var(--foreground));
+  --apple-destructive: var(--destructive, #ef4444);
+  --apple-destructive-foreground: var(--destructive-foreground, #ffffff);
+  --apple-border: var(--border, currentColor);
+  --apple-input: var(--input, var(--border));
+  --apple-ring: var(--ring, var(--primary));
+  --apple-chart-1: var(--chart-1, var(--primary));
+  --apple-chart-2: var(--chart-2, var(--secondary, var(--primary)));
+  --apple-chart-3: var(--chart-3, var(--accent, var(--primary)));
+  --apple-chart-4: var(--chart-4, var(--muted-foreground, var(--foreground)));
+  --apple-chart-5: var(--chart-5, var(--foreground));
+
+  --brand-50: #e8f2ff; --brand-100: #cfe5ff; --brand-200: #9fcbff; --brand-300: #66abff;
+  --brand-400: #2e8dff; --brand-500: #007aff; --brand-600: #0064d6; --brand-700: #004fad;
+  --brand-800: #003b82; --brand-900: #00275a;
+
+  --background-50: #ffffff; --background-100: #f7f7fa; --background-200: #f2f2f7;
+  --background-300: #e5e5ea; --background-400: #d1d1d6; --background-500: #aeaeb2;
+  --background-600: #8e8e93; --background-700: #3a3a3c; --background-800: #1c1c1e;
+  --background-900: #000000;
+
+  --text-50: #f5f5f7; --text-100: #e3e3e8; --text-200: #c7c7cc; --text-300: #aeaeb2;
+  --text-400: #8e8e93; --text-500: #6e6e73; --text-600: #48484a; --text-700: #3c3c43;
+  --text-800: #1d1d1f; --text-900: #000000;
+
+  --icon-50: #f5f5f7; --icon-100: #e5e5ea; --icon-200: #d1d1d6; --icon-300: #c7c7cc;
+  --icon-400: #aeaeb2; --icon-500: #8e8e93; --icon-600: #6e6e73; --icon-700: #48484a;
+  --icon-800: #2c2c2e; --icon-900: #1d1d1f;
+
+  --state-success: #34c759; --state-error: #ff3b30;
+
+  --background: var(--background-50);
+  --foreground: var(--text-800);
+  --card: var(--background-50);
+  --card-foreground: var(--text-800);
+  --popover: var(--background-50);
+  --popover-foreground: var(--text-900);
+  --primary: var(--brand-500);
+  --primary-foreground: var(--background-50);
+  --secondary: var(--background-200);
+  --secondary-foreground: var(--text-800);
+  --muted: var(--background-200);
+  --muted-foreground: var(--text-400);
+  --accent: var(--background-100);
+  --accent-foreground: var(--text-800);
+  --destructive: var(--state-error);
+  --destructive-foreground: #ffffff;
+  --border: var(--background-300);
+  --input: var(--background-400);
+  --ring: var(--brand-500);
+  --icon: var(--icon-900);
+  --icon-muted: var(--icon-500);
+  --chart-1: var(--state-success);
+  --chart-2: var(--brand-500);
+  --chart-3: #ff9500; --chart-4: #5856d6; --chart-5: #af52de;
+  --font-sans: 'DM Sans', ui-sans-serif, sans-serif, system-ui;
+  --font-serif: 'DM Sans', ui-sans-serif, sans-serif, system-ui;
+  --font-mono: 'JetBrains Mono', monospace;
+  --tracking-normal: 0em;
+  --radius: 1.2rem;
+  --shadow-2xs: 0 1px 2px -1px rgba(0,0,0,0.04);
+  --shadow-xs: 0 1px 2px 0 rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05), 0 1px 3px -1px rgba(0,0,0,0.05);
+  --shadow: 0 2px 4px -1px rgba(0,0,0,0.06), 0 1px 2px -1px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 8px -2px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.05);
+  --shadow-lg: 0 8px 24px -8px rgba(0,0,0,0.08), 0 4px 8px -4px rgba(0,0,0,0.05);
+  --shadow-xl: 0 16px 40px -10px rgba(0,0,0,0.10), 0 8px 16px -8px rgba(0,0,0,0.06);
+  --shadow-2xl: 0 24px 64px -12px rgba(0,0,0,0.12);
+  --spacing: 0.24rem;
+}
+
+.dark {
+  --background: var(--background-900);
+  --foreground: var(--text-50);
+  --card: var(--background-800);
+  --card-foreground: var(--text-50);
+  --popover: var(--background-700);
+  --popover-foreground: var(--text-50);
+  --primary: var(--brand-400);
+  --primary-foreground: var(--background-900);
+  --secondary: var(--background-800);
+  --secondary-foreground: var(--text-50);
+  --muted: var(--background-800);
+  --muted-foreground: var(--text-400);
+  --accent: var(--background-700);
+  --accent-foreground: var(--text-50);
+  --destructive: #ff453a;
+  --destructive-foreground: #ffffff;
+  --border: var(--background-700);
+  --input: var(--background-700);
+  --ring: var(--brand-400);
+  --icon: var(--icon-50);
+  --icon-muted: var(--icon-500);
+  --chart-1: #30d158; --chart-2: var(--brand-400); --chart-3: #ff9f0a;
+  --chart-4: #5e5ce6; --chart-5: #bf5af2;
+  --shadow-2xs: 0 1px 2px -1px rgba(0,0,0,0.30);
+  --shadow-xs: 0 1px 2px 0 rgba(0,0,0,0.30);
+  --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.36), 0 1px 3px -1px rgba(0,0,0,0.36);
+  --shadow: 0 2px 4px -1px rgba(0,0,0,0.40), 0 1px 2px -1px rgba(0,0,0,0.36);
+  --shadow-md: 0 4px 8px -2px rgba(0,0,0,0.44), 0 2px 4px -2px rgba(0,0,0,0.36);
+  --shadow-lg: 0 8px 24px -8px rgba(0,0,0,0.50), 0 4px 8px -4px rgba(0,0,0,0.40);
+  --shadow-xl: 0 16px 40px -10px rgba(0,0,0,0.55), 0 8px 16px -8px rgba(0,0,0,0.44);
+  --shadow-2xl: 0 24px 64px -12px rgba(0,0,0,0.60);
+}
+
+@layer base {
+  body { background: var(--background); color: var(--foreground); }
+}
+  </style>
+
+  <style type="text/tailwindcss">
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) * 0.25);
+  --radius-md: calc(var(--radius) * 0.5);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+}
+  </style>
+
+  <style id="semantic-token-fallback">
+.bg-background { background-color: var(--background); }
+.text-foreground { color: var(--foreground); }
+.bg-card { background-color: var(--card); }
+.text-card-foreground { color: var(--card-foreground); }
+.bg-popover { background-color: var(--popover); }
+.text-popover-foreground { color: var(--popover-foreground); }
+.bg-primary { background-color: var(--primary); }
+.text-primary { color: var(--primary); }
+.text-primary-foreground { color: var(--primary-foreground); }
+.bg-secondary { background-color: var(--secondary); }
+.text-secondary-foreground { color: var(--secondary-foreground); }
+.bg-muted { background-color: var(--muted); }
+.text-muted-foreground { color: var(--muted-foreground); }
+.bg-accent { background-color: var(--accent); }
+.text-accent-foreground { color: var(--accent-foreground); }
+.bg-destructive { background-color: var(--destructive); }
+.text-destructive-foreground { color: var(--destructive-foreground); }
+.border-border { border-color: var(--border); }
+.bg-input { background-color: var(--input); }
+.ring-ring { --tw-ring-color: var(--ring); }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/lucide@1.7.0"></script>
+
+  <style>
+[data-icon] {
+  display: inline-block;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  background-color: currentColor;
+}
+  </style>
+</head>
+<body style="background: var(--background); color: var(--foreground); margin: 0; font-family: 'DM Sans', ui-sans-serif, sans-serif, system-ui, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei';">
+<main>
+
+  <!-- 1. Top Navigation Bar -->
+  <nav style="position: sticky; top: 0; z-index: 9999; width: 100%; height: 52px; background: color-mix(in srgb, var(--background) 85%, transparent); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid color-mix(in srgb, var(--foreground) 8%, transparent);">
+    <div style="max-width: 1200px; height: 100%; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; gap: 0;">
+      <a href="#" style="display: inline-flex; align-items: center; height: 100%; padding: 0 12px; font-size: 16px; font-weight: 700; color: var(--foreground); text-decoration: none; letter-spacing: 0.02em; white-space: nowrap;">声浪</a>
+      <div style="flex: 1; display: flex; align-items: center; justify-content: center; height: 100%; gap: 0;">
+        <a data-dom-id="nav-home" href="#" style="display: inline-flex; align-items: center; height: 100%; padding: 0 16px; font-size: 13px; font-weight: 400; color: color-mix(in srgb, var(--foreground) 60%, transparent); text-decoration: none; transition: color 180ms ease; white-space: nowrap;">首页</a>
+        <a href="#" data-active="true" style="display: inline-flex; align-items: center; height: 100%; padding: 0 16px; font-size: 13px; font-weight: 600; color: var(--foreground); text-decoration: none; white-space: nowrap;">声音库</a>
+        <a data-dom-id="nav-pricing" href="#" style="display: inline-flex; align-items: center; height: 100%; padding: 0 16px; font-size: 13px; font-weight: 400; color: color-mix(in srgb, var(--foreground) 60%, transparent); text-decoration: none; transition: color 180ms ease; white-space: nowrap;">定价方案</a>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; height: 100%;">
+        <a href="#" style="display: inline-flex; align-items: center; justify-content: center; height: 100%; padding: 0 12px; font-size: 13px; font-weight: 400; color: color-mix(in srgb, var(--foreground) 60%, transparent); text-decoration: none; transition: color 180ms ease; white-space: nowrap;">登录</a>
+        <a href="#" data-dom-id="cta-pricing" style="display: inline-flex; align-items: center; justify-content: center; height: 32px; padding: 0 20px; border-radius: 980px; background: var(--primary, #2e8dff); color: var(--primary-foreground); font-size: 13px; font-weight: 600; text-decoration: none; white-space: nowrap; transition: filter 180ms ease;">立即体验</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 2. Search Hero Section -->
+  <section style="width: 100%; padding: 80px 24px 64px; text-align: center; background: var(--background);">
+    <div style="max-width: 680px; margin: 0 auto;">
+      <h1 style="margin: 0; font-size: 56px; line-height: 1.07; font-weight: 600; color: var(--foreground); letter-spacing: -0.005em; text-wrap: balance; word-break: keep-all; overflow-wrap: break-word;">探索声音</h1>
+      <p style="margin: 12px 0 0; font-size: 18px; line-height: 1.5; color: color-mix(in srgb, var(--foreground) 55%, transparent);">搜索百万级正版采样音色</p>
+      <!-- Search Input -->
+      <div style="margin-top: 32px; display: flex; align-items: center; height: 52px; padding: 0 20px; border: 1px solid color-mix(in srgb, var(--foreground) 15%, transparent); border-radius: 980px; background: color-mix(in srgb, var(--foreground) 6%, transparent); max-width: 560px; margin-left: auto; margin-right: auto; transition: border-color 180ms ease;">
+        <i data-lucide="search" style="width: 18px; height: 18px; color: color-mix(in srgb, var(--foreground) 40%, transparent); flex-shrink: 0;"></i>
+        <input type="text" placeholder="搜索声音，如 '钢琴和弦'" style="flex: 1; border: none; outline: none; background: transparent; color: var(--foreground); font-size: 16px; font-weight: 400; padding: 0 12px; font-family: inherit;" aria-label="搜索声音">
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Browse Genres Section -->
+  <section style="width: 100%; padding: 40px 24px 48px; background: var(--background);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: flex; align-items: center; gap: 16px; overflow-x: auto; padding-bottom: 8px;" class="genre-scroll">
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">嘻哈</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">陷阱</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">流行</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">R&B</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">电子</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">民谣</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">古风</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">摇滚</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">鼓组</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">人声</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">合成器</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">音效</span>
+        <a href="#" style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; color: var(--primary); font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap; flex-shrink: 0;">探索全部</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Browse Instruments Section -->
+  <section style="width: 100%; padding: 0 24px 56px; background: var(--background);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <h2 style="margin: 0; font-size: 20px; font-weight: 600; color: var(--foreground); letter-spacing: -0.01em;">浏览乐器</h2>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px; overflow-x: auto; padding-bottom: 8px;">
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">鼓</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">人声</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">合成器</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">键盘</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">吉他</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">贝斯</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">打击乐</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">钢琴</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">弦乐</span>
+        <span style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent); border-radius: 980px; background: transparent; color: var(--foreground); font-size: 14px; font-weight: 400; white-space: nowrap; cursor: pointer; transition: background 180ms ease, color 180ms ease; flex-shrink: 0;">808</span>
+        <a href="#" style="display: inline-flex; align-items: center; justify-content: center; height: 36px; padding: 0 16px; color: var(--primary); font-size: 14px; font-weight: 500; text-decoration: none; white-space: nowrap; flex-shrink: 0;">探索全部</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Sample Pack Grid Section -->
+  <section style="width: 100%; padding: 0 24px 80px; background: var(--background);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+        <h2 style="margin: 0; font-size: 28px; font-weight: 600; color: var(--foreground); letter-spacing: 0.007em;">最新采样包</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;" class="pack-grid">
+
+        <!-- Card 1 -->
+        <article style="display: flex; flex-direction: column; gap: 10px; padding: 0; border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent); border-radius: 16px; background: var(--card); overflow: hidden; transition: border-color 200ms ease, transform 200ms ease; cursor: pointer;">
+          <div style="aspect-ratio: 1; background: linear-gradient(135deg, #007aff 0%, #5856d6 100%);"></div>
+          <div style="padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <h3 style="margin: 0; font-size: 15px; font-weight: 600; color: var(--foreground); line-height: 1.3;">暗夜嘻哈</h3>
+            <p style="margin: 0; font-size: 13px; color: color-mix(in srgb, var(--foreground) 50%, transparent);">BeatMaster</p>
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">嘻哈</span>
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">鼓组</span>
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">一拍</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 4px;">
+              <button style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; border: none; background: transparent; color: var(--primary); cursor: pointer; transition: background 180ms ease;">
+                <i data-lucide="play" style="width: 16px; height: 16px; fill: var(--primary);"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article style="display: flex; flex-direction: column; gap: 10px; padding: 0; border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent); border-radius: 16px; background: var(--card); overflow: hidden; transition: border-color 200ms ease, transform 200ms ease; cursor: pointer;">
+          <div style="aspect-ratio: 1; background: linear-gradient(135deg, #bf5af2 0%, #ff375f 100%);"></div>
+          <div style="padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <h3 style="margin: 0; font-size: 15px; font-weight: 600; color: var(--foreground); line-height: 1.3;">迷幻电子</h3>
+            <p style="margin: 0; font-size: 13px; color: color-mix(in srgb, var(--foreground) 50%, transparent);">SynthWave</p>
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">电子</span>
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">合成器</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 4px;">
+              <button style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; border: none; background: transparent; color: var(--primary); cursor: pointer; transition: background 180ms ease;">
+                <i data-lucide="play" style="width: 16px; height: 16px; fill: var(--primary);"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article style="display: flex; flex-direction: column; gap: 10px; padding: 0; border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent); border-radius: 16px; background: var(--card); overflow: hidden; transition: border-color 200ms ease, transform 200ms ease; cursor: pointer;">
+          <div style="aspect-ratio: 1; background: linear-gradient(135deg, #ff9f0a 0%, #ff375f 100%);"></div>
+          <div style="padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <h3 style="margin: 0; font-size: 15px; font-weight: 600; color: var(--foreground); line-height: 1.3;">流行金曲</h3>
+            <p style="margin: 0; font-size: 13px; color: color-mix(in srgb, var(--foreground) 50%, transparent);">PopStudio</p>
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">流行</span>
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">人声</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 4px;">
+              <button style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; border: none; background: transparent; color: var(--primary); cursor: pointer; transition: background 180ms ease;">
+                <i data-lucide="play" style="width: 16px; height: 16px; fill: var(--primary);"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 -->
+        <article style="display: flex; flex-direction: column; gap: 10px; padding: 0; border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent); border-radius: 16px; background: var(--card); overflow: hidden; transition: border-color 200ms ease, transform 200ms ease; cursor: pointer;">
+          <div style="aspect-ratio: 1; background: linear-gradient(135deg, #30d158 0%, #007aff 100%);"></div>
+          <div style="padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <h3 style="margin: 0; font-size: 15px; font-weight: 600; color: var(--foreground); line-height: 1.3;">古风韵律</h3>
+            <p style="margin: 0; font-size: 13px; color: color-mix(in srgb, var(--foreground) 50%, transparent);">东方音舍</p>
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">古风</span>
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">弦乐</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 4px;">
+              <button style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; border: none; background: transparent; color: var(--primary); cursor: pointer; transition: background 180ms ease;">
+                <i data-lucide="play" style="width: 16px; height: 16px; fill: var(--primary);"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 5 -->
+        <article style="display: flex; flex-direction: column; gap: 10px; padding: 0; border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent); border-radius: 16px; background: var(--card); overflow: hidden; transition: border-color 200ms ease, transform 200ms ease; cursor: pointer;">
+          <div style="aspect-ratio: 1; background: linear-gradient(135deg, #ff375f 0%, #ff9f0a 100%);"></div>
+          <div style="padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <h3 style="margin: 0; font-size: 15px; font-weight: 600; color: var(--foreground); line-height: 1.3;">陷阱节拍</h3>
+            <p style="margin: 0; font-size: 13px; color: color-mix(in srgb, var(--foreground) 50%, transparent);">TrapKing</p>
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">陷阱</span>
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">808</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 4px;">
+              <button style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; border: none; background: transparent; color: var(--primary); cursor: pointer; transition: background 180ms ease;">
+                <i data-lucide="play" style="width: 16px; height: 16px; fill: var(--primary);"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 6 -->
+        <article style="display: flex; flex-direction: column; gap: 10px; padding: 0; border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent); border-radius: 16px; background: var(--card); overflow: hidden; transition: border-color 200ms ease, transform 200ms ease; cursor: pointer;">
+          <div style="aspect-ratio: 1; background: linear-gradient(135deg, #5e5ce6 0%, #bf5af2 100%);"></div>
+          <div style="padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <h3 style="margin: 0; font-size: 15px; font-weight: 600; color: var(--foreground); line-height: 1.3;">R&B灵魂</h3>
+            <p style="margin: 0; font-size: 13px; color: color-mix(in srgb, var(--foreground) 50%, transparent);">SoulSample</p>
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">R&B</span>
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">键盘</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 4px;">
+              <button style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; border: none; background: transparent; color: var(--primary); cursor: pointer; transition: background 180ms ease;">
+                <i data-lucide="play" style="width: 16px; height: 16px; fill: var(--primary);"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 7 -->
+        <article style="display: flex; flex-direction: column; gap: 10px; padding: 0; border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent); border-radius: 16px; background: var(--card); overflow: hidden; transition: border-color 200ms ease, transform 200ms ease; cursor: pointer;">
+          <div style="aspect-ratio: 1; background: linear-gradient(135deg, #64d2ff 0%, #30d158 100%);"></div>
+          <div style="padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <h3 style="margin: 0; font-size: 15px; font-weight: 600; color: var(--foreground); line-height: 1.3;">摇滚火力</h3>
+            <p style="margin: 0; font-size: 13px; color: color-mix(in srgb, var(--foreground) 50%, transparent);">RockLab</p>
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">摇滚</span>
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">吉他</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 4px;">
+              <button style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; border: none; background: transparent; color: var(--primary); cursor: pointer; transition: background 180ms ease;">
+                <i data-lucide="play" style="width: 16px; height: 16px; fill: var(--primary);"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 8 -->
+        <article style="display: flex; flex-direction: column; gap: 10px; padding: 0; border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent); border-radius: 16px; background: var(--card); overflow: hidden; transition: border-color 200ms ease, transform 200ms ease; cursor: pointer;">
+          <div style="aspect-ratio: 1; background: linear-gradient(135deg, #ffd60a 0%, #ff9f0a 100%);"></div>
+          <div style="padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+            <h3 style="margin: 0; font-size: 15px; font-weight: 600; color: var(--foreground); line-height: 1.3;">民谣清音</h3>
+            <p style="margin: 0; font-size: 13px; color: color-mix(in srgb, var(--foreground) 50%, transparent);">AcousticRoom</p>
+            <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">民谣</span>
+              <span style="display: inline-flex; align-items: center; justify-content: center; height: 24px; padding: 0 10px; border-radius: 980px; background: color-mix(in srgb, var(--foreground) 8%, transparent); color: color-mix(in srgb, var(--foreground) 60%, transparent); font-size: 12px; white-space: nowrap;">钢琴</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 4px;">
+              <button style="display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 999px; border: none; background: transparent; color: var(--primary); cursor: pointer; transition: background 180ms ease;">
+                <i data-lucide="play" style="width: 16px; height: 16px; fill: var(--primary);"></i>
+              </button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Trust Signals Row -->
+  <section style="width: 100%; padding: 0 24px 80px; background: var(--background);">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-radius: 16px; overflow: hidden; background: var(--card); border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);">
+        <div style="padding: 32px 28px; display: flex; flex-direction: column; gap: 8px; border-right: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);">
+          <i data-lucide="shield-check" style="width: 28px; height: 28px; color: var(--primary);"></i>
+          <h3 style="margin: 4px 0 0; font-size: 16px; font-weight: 600; color: var(--foreground); line-height: 1.3;">正版授权</h3>
+          <p style="margin: 0; font-size: 13px; color: color-mix(in srgb, var(--foreground) 50%, transparent); line-height: 1.5;">100% 版权免费</p>
+        </div>
+        <div style="padding: 32px 28px; display: flex; flex-direction: column; gap: 8px; border-right: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);">
+          <i data-lucide="download" style="width: 28px; height: 28px; color: var(--primary);"></i>
+          <h3 style="margin: 4px 0 0; font-size: 16px; font-weight: 600; color: var(--foreground); line-height: 1.3;">永久拥有</h3>
+          <p style="margin: 0; font-size: 13px; color: color-mix(in srgb, var(--foreground) 50%, transparent); line-height: 1.5;">一次下载终身使用</p>
+        </div>
+        <div style="padding: 32px 28px; display: flex; flex-direction: column; gap: 8px;">
+          <i data-lucide="refresh-cw" style="width: 28px; height: 28px; color: var(--primary);"></i>
+          <h3 style="margin: 4px 0 0; font-size: 16px; font-weight: 600; color: var(--foreground); line-height: 1.3;">随时取消</h3>
+          <p style="margin: 0; font-size: 13px; color: color-mix(in srgb, var(--foreground) 50%, transparent); line-height: 1.5;">无需绑定灵活订阅</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Footer -->
+  <footer style="background: var(--card); color: var(--text-400); font-size: 12px; line-height: 1.4; letter-spacing: -0.01em; padding: 18px 24px 32px;">
+    <div style="max-width: 1024px; margin: 0 auto;">
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 30px 0; border-bottom: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);">
+        <div>
+          <h5 style="margin: 0 0 8px; font-size: 12px; font-weight: 600; color: var(--foreground); letter-spacing: -0.01em;">产品</h5>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px;">
+            <li><a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">声音库</a></li>
+            <li><a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">采样包</a></li>
+            <li><a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">音色库</a></li>
+            <li><a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">插件</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 style="margin: 0 0 8px; font-size: 12px; font-weight: 600; color: var(--foreground); letter-spacing: -0.01em;">资源</h5>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px;">
+            <li><a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">教程</a></li>
+            <li><a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">博客</a></li>
+            <li><a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">社区</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 style="margin: 0 0 8px; font-size: 12px; font-weight: 600; color: var(--foreground); letter-spacing: -0.01em;">支持</h5>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px;">
+            <li><a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">帮助中心</a></li>
+            <li><a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">联系我们</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 style="margin: 0 0 8px; font-size: 12px; font-weight: 600; color: var(--foreground); letter-spacing: -0.01em;">关于</h5>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px;">
+            <li><a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">关于声浪</a></li>
+            <li><a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">隐私政策</a></li>
+            <li><a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">服务条款</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="padding: 18px 0 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
+        <span style="font-size: 12px;">Copyright 2025 声浪SoundWave. All rights reserved.</span>
+        <div style="display: flex; gap: 16px;">
+          <a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">隐私政策</a>
+          <a href="#" style="color: var(--text-400); font-size: 12px; text-decoration: none;">服务条款</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</main>
+
+<script>lucide.createIcons();</script>
+
+<style>
+  @media (max-width: 832px) {
+    .pack-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+  }
+  @media (max-width: 480px) {
+    .pack-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+</body>
+</html>

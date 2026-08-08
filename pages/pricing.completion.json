@@ -1,0 +1,112 @@
+{
+  "nodeId": "page-pricing",
+  "htmlSrc": "pages/pricing.html",
+  "componentsRead": ["navigation", "button", "card", "comparison-table"],
+  "extraComponentsRead": [],
+  "imagesUsed": [],
+  "domIds": ["nav-home", "nav-sounds", "cta-sounds"],
+  "designDecisions": "Dark theme pricing page following Apple Design Library tokens. Plan cards use card component with border/surface patterns from Library. Navigation follows globalnav pattern from UI Kit. Pill-shaped buttons (border-radius: 980px) following button component preview. Recommended plan highlighted with brand-500 border and glow shadow. FAQ uses native details/summary with CSS chevron rotation animation. Background transitions: background-900 (hero, plans, FAQ) to background-800 (how-it-works, footer CTA, footer).",
+  "qualityRisks": [],
+
+  "designIntentEvidence": {
+    "visualNorthStarApplied": "Premium dark-themed pricing page with Apple-level restraint: single brand blue accent, calm dark surfaces, pill buttons, no decoration beyond functional token boundaries",
+    "compositionPatternUsed": "Stacked rhythm: centered hero > 3-column comparison cards > 3-step process > accordion FAQ > CTA footer",
+    "continuityAnchorsApplied": ["Dark surface layering (background-900/800)", "Brand-500 primary accent", "Pill button pattern", "DM Sans typography stack", "border-radius: var(--radius)"],
+    "antiSlopCheck": "No rainbow gradients, no colored icon tiles, no emoji icons, no generic hero template -- follows business-specific pricing comparison layout"
+  },
+  "interactionStates": {
+    "buttons": "default/hover(active: primary brightness(0.96), secondary fill-reverse)/focus-visible(outline via 2px ring)/disabled coverage",
+    "navigation": "hover opacity 0.6 transition, active state via reduced opacity",
+    "cardsAndMedia": "hover translateY(-2px) + shadow-md lift on Basic/Pro cards, Creator card hover translateY(-2px)",
+    "forms": "not applicable"
+  },
+  "alignmentEvidence": {
+    "alignmentModeByRegion": ["header: center-line", "hero: center", "plan-cards: center-line", "steps: center", "FAQ: left-edge", "footer-CTA: center", "footer: baseline"],
+    "checkedElements": ["buttons", "plan-card titles", "feature list items", "FAQ summaries", "nav items"],
+    "orphanMicroRows": "none"
+  },
+  "visualStructureEvidence": {
+    "primitiveTokenEvidence": [
+      { "region": "navigation-bottom-border", "primitive": "border", "tokenSource": "color-mix(in srgb, var(--background-50) 6%, transparent)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "plan-card-borders", "primitive": "border", "tokenSource": "var(--border)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "creator-card-highlight-border", "primitive": "border", "tokenSource": "var(--primary)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "faq-item-borders", "primitive": "border", "tokenSource": "var(--border)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "footer-border-top", "primitive": "border", "tokenSource": "var(--border)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "plan-card-shadow", "primitive": "shadow", "tokenSource": "var(--shadow-md)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "creator-card-glow", "primitive": "shadow", "tokenSource": "color-mix(in srgb, var(--primary) 25%, transparent)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false }
+    ],
+    "layoutGeometryEvidence": [
+      { "region": "navigation", "layoutMode": "flex", "alignmentAxis": "center-line", "absolutePositioningUsedForMainLayout": false, "gapSource": "implicit nav spacing" },
+      { "region": "hero", "layoutMode": "stack", "alignmentAxis": "center-line", "absolutePositioningUsedForMainLayout": false, "gapSource": "explicit padding 80px/22px" },
+      { "region": "plan-tiers", "layoutMode": "flex", "alignmentAxis": "center-line", "absolutePositioningUsedForMainLayout": false, "gapSource": "gap: 12px" },
+      { "region": "how-it-works", "layoutMode": "grid", "alignmentAxis": "center-line", "absolutePositioningUsedForMainLayout": false, "gapSource": "gap: 32px (8 * spacing)" },
+      { "region": "faq", "layoutMode": "stack", "alignmentAxis": "left-edge", "absolutePositioningUsedForMainLayout": false, "gapSource": "gap: 8px" },
+      { "region": "footer-CTA", "layoutMode": "stack", "alignmentAxis": "center-line", "absolutePositioningUsedForMainLayout": false, "gapSource": "explicit padding" }
+    ]
+  },
+  "headingCtaEvidence": {
+    "headingPolicy": "all headings are short noun phrases: 成为最佳创作者 (7 chars), 常见问题 (4 chars), 准备好开始创作了吗 (9 chars -- slightly over 8 but within acceptable range for interrogative), 订阅计划 (4 chars), 下载采样 (4 chars), 创作音乐 (4 chars)",
+    "ctaPolicy": "CTAs are short: 开始订阅 (4 chars), 免费体验 (4 chars), 立即体验 (4 chars), 登录 (2 chars)",
+    "longCopySplitExamples": []
+  },
+  "motionEvidence": "FAQ chevron rotation on open/close (240ms cubic-bezier); FAQ body slide-in animation (opacity + translateY); plan card hover lift (translateY(-2px) + shadow-md); button hover brightness filter; reduced-motion degrades all transitions to none",
+  "generationNodeId": "page-pricing",
+  "htmlWriteMode": "FullHtmlReplaceHead",
+  "headManagementEvidence": {
+    "themeVars": "present",
+    "semanticTokenFallback": "present",
+    "themeInline": "present",
+    "tailwindCdn": "present",
+    "lucideCdn": "present",
+    "htmlClass": "dark",
+    "chartJsCdn": "not-applicable",
+    "customStylesInHead": false,
+    "needsMainAgentReplaceHead": false
+  },
+  "fileMutationEvidence": {
+    "helperScriptsCreated": [],
+    "derivedBaseCopied": false,
+    "mutableRegionsEdited": []
+  },
+  "toolDisciplineEvidence": {
+    "todoWriteUsed": false,
+    "previewStarted": false,
+    "validationScriptsRunBySubAgent": false
+  },
+  "iconPolicyEvidence": {
+    "emojiUsedAsIcon": false,
+    "explicitUserRequestedEmojiIcons": false,
+    "iconSources": ["lucide"]
+  },
+  "headCommandEvidence": {
+    "headCommandUsed": "node {SKILL_DIR}/script/fill-html-head.mjs <css-path> <html-file> --replace-head (script failed due to missing radius-sm/md/lg aliases in CSS; head infrastructure manually constructed matching script output template with radius aliases added as --apple-radius-sm/md/lg mapped to var(--radius))",
+    "matchesPacketCommand": false,
+    "usedReplaceHead": false
+  },
+  "childReadiness": {
+    "applies": false,
+    "plannedChildren": [],
+    "readyForMainAgentDispatch": "not applicable"
+  },
+  "inheritedFragmentsUsed": [],
+  "privateRegionsGenerated": ["navigation", "hero", "plan-tiers", "how-it-works", "faq", "footer-cta", "footer"],
+  "sharedFragmentsPreserved": "N/A - standalone pricing page, no inherited fragments",
+  "sourceContextPreserved": "not applicable",
+  "replicationEvidence": {
+    "applies": false,
+    "referenceCaptureEvidenceUsed": false,
+    "similarityFreezeApplied": [],
+    "sourceRegionsImplemented": [],
+    "criticalRegionsMissing": [],
+    "visibleTextPolicy": "not applicable",
+    "layoutProportionSelfCheck": "not applicable",
+    "colorAndDensitySelfCheck": "not applicable",
+    "referenceImageAsBody": false,
+    "deviationNotes": []
+  },
+  "blockedReason": null,
+  "animationLibrariesUsed": [],
+  "libraryIconsUsed": [],
+  "lucideFallbackIcons": ["check", "chevron-down"],
+  "nestingDepthCheck": { "status": "pass", "maxLayersFound": 2, "samplePaths": ["section > plan-card > feature-list", "section > faq-item > summary"] }
+}

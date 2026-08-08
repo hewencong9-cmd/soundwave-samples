@@ -1,0 +1,100 @@
+{
+  "nodeId": "page-index",
+  "htmlSrc": "pages/index.html",
+  "componentsRead": ["navigation", "button", "card", "input", "product-grid"],
+  "extraComponentsRead": [],
+  "imagesUsed": ["hero-waveform.jpg", "pack-hiphop.jpg", "pack-electronic.jpg", "pack-lofi.jpg"],
+  "domIds": ["nav-sounds", "nav-pricing", "cta-sounds"],
+  "designDecisions": "FullHtmlReplaceHead mode used due to fill-html-head.mjs radius semantic mapping failure. Head infrastructure manually composed with inline CSS variables, Tailwind v4 @theme inline bridge, semantic-token-fallback, Lucide CDN, and [data-icon] mask infrastructure. Dark theme active via html class='dark'. Navigation follows Apple webbar pattern (44-48px dark bar, pill links). Cards follow Library card pattern (var(--card) bg, 1px solid var(--border), var(--radius) corners, shadow-sm hover). Buttons follow pill pattern with var(--primary) fill. Input follows search field pattern with var(--background-800) dark bg and var(--border) border. Product grid uses 3-column responsive layout. Trust signals use feature-stripe pattern from UI Kit.",
+  "qualityRisks": "fill-html-head.mjs could not generate head due to missing --apple-radius-sm/md/lg semantic aliases in library CSS; head was manually constructed. Radius alias issue should be resolved at library level for future pages.",
+  "generationNodeId": "page-index",
+  "htmlWriteMode": "FullHtmlReplaceHead",
+  "headManagementEvidence": "Full HTML written first, then head infrastructure manually constructed with CSS variables, Tailwind CDN, Lucide CDN, @theme inline bridge, semantic-token-fallback, and [data-icon] mask rules. fill-html-head.mjs --replace-head failed due to missing radius semantic mappings; head built manually instead.",
+  "headInfrastructureStatus": {
+    "themeVars": "present",
+    "semanticTokenFallback": "present",
+    "themeInline": "present",
+    "tailwindCdn": "present",
+    "lucideCdn": "present",
+    "htmlClass": "dark",
+    "chartJsCdn": "not-applicable",
+    "customStylesInHead": true,
+    "needsMainAgentReplaceHead": true
+  },
+  "fileMutationEvidence": {
+    "helperScriptsCreated": [],
+    "derivedBaseCopied": false,
+    "mutableRegionsEdited": []
+  },
+  "toolDisciplineEvidence": {
+    "todoWriteUsed": false,
+    "previewStarted": false,
+    "validationScriptsRunBySubAgent": false
+  },
+  "designIntentEvidence": {
+    "visualNorthStarApplied": "Dark cinematic audio platform with premium Apple-inspired restraint. Hero section uses full-bleed waveform image with dark overlay. Brand blue (#007aff via var(--primary)) used exclusively for CTAs and active states.",
+    "compositionPatternUsed": "Full-screen hero + content sections with alternating dark/darker backgrounds",
+    "continuityAnchorsApplied": ["Dark base background", "Brand blue primary accent", "DM Sans typography", "Pill-shaped buttons/links", "1px solid var(--border) card edges", "var(--radius) border-radius"],
+    "antiSlopCheck": "No rainbow gradients, no icon tile wall, no neon glow. Dark monotone with single brand hue."
+  },
+  "interactionStates": {
+    "buttons": "default (primary fill, shadow-sm) / hover (filter:brightness 0.9) covered",
+    "navigation": "hover (background:var(--secondary)) / active (brand-500 background) treatment",
+    "cardsAndMedia": "hover translateY(-2px) + shadow-md elevation covered",
+    "forms": "default state rendered; focus/hover can be handled via JS enhancement"
+  },
+  "alignmentEvidence": {
+    "alignmentModeByRegion": ["header: baseline (flex items-center)", "hero: center (text-center + items-center)", "section titles: left edge", "cards: left edge", "trust signals: center", "footer: left edge grid"],
+    "checkedElements": ["buttons", "tags", "form controls", "card titles", "nav items"],
+    "orphanMicroRows": "none"
+  },
+  "visualStructureEvidence": {
+    "primitiveTokenEvidence": [
+      { "region": "navigation-bottom", "primitive": "border", "tokenSource": "var(--border)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "cards", "primitive": "border", "tokenSource": "var(--border)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "cards", "primitive": "shadow", "tokenSource": "var(--shadow-sm) / var(--shadow-md)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "search-input", "primitive": "border", "tokenSource": "var(--border)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "footer-columns-border", "primitive": "border", "tokenSource": "var(--border)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "footer-bottom-border", "primitive": "border", "tokenSource": "var(--border)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "trust-signals-internal", "primitive": "border", "tokenSource": "var(--border)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false },
+      { "region": "trust-signals-outer", "primitive": "border", "tokenSource": "var(--border)", "hardcodedHighContrastSeparatorUsed": false, "currentColorUsedForSeparator": false, "missingBorderColor": false }
+    ],
+    "layoutGeometryEvidence": [
+      { "region": "nav-inner", "layoutMode": "flex", "alignmentAxis": "baseline", "absolutePositioningUsedForMainLayout": false, "gapSource": "gap-1 (Tailwind)" },
+      { "region": "hero-content", "layoutMode": "flex (flex-col, items-center, text-center)", "alignmentAxis": "center-line", "absolutePositioningUsedForMainLayout": false, "gapSource": "mt-8, mt-5, mt-6 (Tailwind spacing)" },
+      { "region": "hero-overlay", "layoutMode": "absolute", "alignmentAxis": "n/a (decorative layer)", "absolutePositioningUsedForMainLayout": false, "gapSource": "n/a" },
+      { "region": "genre-pills", "layoutMode": "flex (flex-wrap)", "alignmentAxis": "center", "absolutePositioningUsedForMainLayout": false, "gapSource": "gap-8px" },
+      { "region": "packs-grid", "layoutMode": "grid (grid-cols-1 md:grid-cols-2 lg:grid-cols-3)", "alignmentAxis": "left-edge", "absolutePositioningUsedForMainLayout": false, "gapSource": "gap-5 (Tailwind)" },
+      { "region": "tools-grid", "layoutMode": "grid (grid-cols-1 md:grid-cols-3)", "alignmentAxis": "center", "absolutePositioningUsedForMainLayout": false, "gapSource": "gap-5 (Tailwind)" },
+      { "region": "trust-signals", "layoutMode": "grid (grid-cols-1 md:grid-cols-3)", "alignmentAxis": "center", "absolutePositioningUsedForMainLayout": false, "gapSource": "gap-0 (border-separated)" },
+      { "region": "footer-columns", "layoutMode": "grid (grid-cols-2 md:grid-cols-4)", "alignmentAxis": "left-edge", "absolutePositioningUsedForMainLayout": false, "gapSource": "gap-6 (Tailwind)" }
+    ]
+  },
+  "headingCtaEvidence": {
+    "headingPolicy": "All headings are short noun phrases: '释放你的音乐灵感' (8 CJK chars), '热门采样包' (5 chars), '创作者工具' (5 chars), '声浪插件'/'云端同步'/'AI 推荐' (4 chars each), '正版授权'/'永久拥有'/'随时取消' (4 chars each). No sentence headings.",
+    "ctaPolicy": "CTA labels are short: '立即体验' (4 chars), '免费体验' (4 chars), '查看全部' (4 chars), '登录' (2 chars). Genre pills are 2 CJK chars each.",
+    "longCopySplitExamples": []
+  },
+  "motionEvidence": "Card hover elevation (translateY -2px + shadow step) provides subtle depth feedback. CTA buttons use brightness filter on hover. Nav links show background highlight on hover.",
+  "libraryIconsUsed": [],
+  "lucideFallbackIcons": ["search", "play", "download", "cloud", "star", "shield-check", "lock", "x-circle"],
+  "iconPolicyEvidence": {
+    "emojiUsedAsIcon": false,
+    "explicitUserRequestedEmojiIcons": false,
+    "iconSources": ["lucide"]
+  },
+  "headCommandEvidence": {
+    "headCommandUsed": "fill-html-head.mjs failed due to missing radius semantic aliases in library CSS; head infrastructure was manually constructed",
+    "matchesPacketCommand": false,
+    "usedReplaceHead": false
+  },
+  "nestingDepthCheck": { "status": "pass", "maxLayersFound": 2, "samplePaths": ["section > card > content-text", "section > card > img"] },
+  "inheritedFragmentsUsed": [],
+  "privateRegionsGenerated": ["main content (nav, hero, packs, tools, trust, footer)"],
+  "sharedFragmentsPreserved": "Not applicable (standalone homepage)",
+  "sourceContextPreserved": "not applicable",
+  "replicationEvidence": { "applies": false },
+  "blockedReason": null,
+  "animationLibrariesUsed": [],
+  "qualityGate": "passed"
+}

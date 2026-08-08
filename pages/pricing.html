@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>声浪SoundWave - 定价方案</title>
+    <style id="theme-vars">
+
+/*
+ * Pinguo design tokens
+ * Brand: Pinguo
+ * Domain: Consumer imaging product
+ * Style: Restrained, elegant, Apple-inspired
+ * Theme mode: light-dark
+ * Source language: zh
+ * Output language: en
+ *
+ * Color architecture (two layers):
+ *   1. Primitive palette - six categories. brand / background / text / icon
+ *      are each a 10-step scale (50 lightest to 900 darkest). state-success and
+ *      state-error are functional colors anchored on Apple system colors.
+ *      Anchors follow Apple Human Interface Guidelines system colors
+ *      (System Blue #007AFF, System Green #34C759, System Red #FF3B30,
+ *      system grays / label / background colors).
+ *   2. Semantic tokens - :root (light) and .dark map roles onto primitives.
+ *      Components and UI kits must only consume the semantic tokens below.
+ */
+
+/* @group-priority: brand, background, text, icon, state-success, state-error */
+
+:root {
+  
+  /* solo-design consumption aliases: explicit prefix for fill-html-head.mjs */
+  --apple-background: var(--background, #ffffff);
+  --apple-foreground: var(--foreground, #0f172a);
+  --apple-card: var(--card, var(--background));
+  --apple-card-foreground: var(--card-foreground, var(--foreground));
+  --apple-popover: var(--popover, var(--card));
+  --apple-popover-foreground: var(--popover-foreground, var(--card-foreground, var(--foreground)));
+  --apple-primary: var(--primary, #111827);
+  --apple-primary-foreground: var(--primary-foreground, #ffffff);
+  --apple-secondary: var(--secondary, var(--muted, var(--card)));
+  --apple-secondary-foreground: var(--secondary-foreground, var(--foreground));
+  --apple-muted: var(--muted, var(--card));
+  --apple-muted-foreground: var(--muted-foreground, var(--foreground));
+  --apple-accent: var(--accent, var(--secondary, var(--muted, var(--card))));
+  --apple-accent-foreground: var(--accent-foreground, var(--foreground));
+  --apple-destructive: var(--destructive, #ef4444);
+  --apple-destructive-foreground: var(--destructive-foreground, #ffffff);
+  --apple-border: var(--border, currentColor);
+  --apple-input: var(--input, var(--border));
+  --apple-ring: var(--ring, var(--primary));
+  --apple-chart-1: var(--chart-1, var(--primary));
+  --apple-chart-2: var(--chart-2, var(--secondary, var(--primary)));
+  --apple-chart-3: var(--chart-3, var(--accent, var(--primary)));
+  --apple-chart-4: var(--chart-4, var(--muted-foreground, var(--foreground)));
+  --apple-chart-5: var(--chart-5, var(--foreground));
+  --apple-sidebar: var(--sidebar, var(--background));
+  --apple-sidebar-foreground: var(--sidebar-foreground, var(--foreground));
+  --apple-sidebar-primary: var(--sidebar-primary, var(--primary));
+  --apple-sidebar-primary-foreground: var(--sidebar-primary-foreground, var(--primary-foreground));
+  --apple-sidebar-accent: var(--sidebar-accent, var(--accent, var(--muted, var(--card))));
+  --apple-sidebar-accent-foreground: var(--sidebar-accent-foreground, var(--accent-foreground, var(--foreground)));
+  --apple-radius-sm: var(--radius);
+  --apple-radius-md: var(--radius);
+  --apple-radius-lg: var(--radius);
+
+/* ===== PRIMITIVE PALETTE ===== */
+
+  /* brand */
+  --brand-50: #e8f2ff;
+  --brand-100: #cfe5ff;
+  --brand-200: #9fcbff;
+  --brand-300: #66abff;
+  --brand-400: #2e8dff;
+  --brand-500: #007aff;
+  --brand-600: #0064d6;
+  --brand-700: #004fad;
+  --brand-800: #003b82;
+  --brand-900: #00275a;
+
+  /* background */
+  --background-50: #ffffff;
+  --background-100: #f7f7fa;
+  --background-200: #f2f2f7;
+  --background-300: #e5e5ea;
+  --background-400: #d1d1d6;
+  --background-500: #aeaeb2;
+  --background-600: #8e8e93;
+  --background-700: #3a3a3c;
+  --background-800: #1c1c1e;
+  --background-900: #000000;
+
+  /* text */
+  --text-50: #f5f5f7;
+  --text-100: #e3e3e8;
+  --text-200: #c7c7cc;
+  --text-300: #aeaeb2;
+  --text-400: #8e8e93;
+  --text-500: #6e6e73;
+  --text-600: #48484a;
+  --text-700: #3c3c43;
+  --text-800: #1d1d1f;
+  --text-900: #000000;
+
+  /* icon */
+  --icon-50: #f5f5f7;
+  --icon-100: #e5e5ea;
+  --icon-200: #d1d1d6;
+  --icon-300: #c7c7cc;
+  --icon-400: #aeaeb2;
+  --icon-500: #8e8e93;
+  --icon-600: #6e6e73;
+  --icon-700: #48484a;
+  --icon-800: #2c2c2e;
+  --icon-900: #1d1d1f;
+
+  /* state-success */
+  --state-success: #34c759;
+  --state-success-dark: #30d158;
+  --state-success-surface: #e9f9ee;
+  --state-success-foreground: #ffffff;
+
+  /* state-error */
+  --state-error: #ff3b30;
+  --state-error-dark: #ff453a;
+  --state-error-surface: #ffecea;
+  --state-error-foreground: #ffffff;
+
+  /* ===== SEMANTIC ROLES ===== */
+
+  /* semantic */
+  --background: var(--background-50);
+  --foreground: var(--text-800);
+  --card: var(--background-50);
+  --card-foreground: var(--text-800);
+  --popover: var(--background-50);
+  --popover-foreground: var(--text-900);
+
+  --primary: var(--brand-500);
+  --primary-foreground: var(--background-50);
+  --secondary: var(--background-200);
+  --secondary-foreground: var(--text-800);
+  --muted: var(--background-200);
+  --muted-foreground: var(--text-400);
+  --accent: var(--background-100);
+  --accent-foreground: var(--text-800);
+  --destructive: var(--state-error);
+  --destructive-foreground: var(--state-error-foreground);
+  --success: var(--state-success);
+  --success-foreground: var(--state-success-foreground);
+  --border: var(--background-300);
+  --input: var(--background-400);
+  --ring: var(--brand-500);
+
+  --icon: var(--icon-900);
+  --icon-muted: var(--icon-500);
+
+  /* chart */
+  --chart-1: var(--state-success);
+  --chart-2: var(--brand-500);
+  --chart-3: #ff9500;
+  --chart-4: #5856d6;
+  --chart-5: #af52de;
+
+  /* sidebar */
+  --sidebar: var(--background-200);
+  --sidebar-foreground: var(--text-800);
+  --sidebar-primary: var(--brand-500);
+  --sidebar-primary-foreground: var(--background-50);
+  --sidebar-accent: var(--background-300);
+  --sidebar-accent-foreground: var(--text-800);
+  --sidebar-border: var(--background-300);
+  --sidebar-ring: var(--brand-500);
+
+  /* TYPOGRAPHY */
+  --font-sans: DM Sans, ui-sans-serif, sans-serif, system-ui;
+  --font-serif: DM Sans, ui-sans-serif, sans-serif, system-ui;
+  --font-mono: JetBrains Mono, monospace;
+  --tracking-normal: 0em;
+
+  /* RADIUS */
+  --radius: 1.2rem;
+
+  /* SHADOWS */
+  --shadow-2xs: 0 1px 2px -1px rgba(0, 0, 0, 0.04);
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 3px -1px rgba(0, 0, 0, 0.05);
+  --shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 8px 24px -8px rgba(0, 0, 0, 0.08), 0 4px 8px -4px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 16px 40px -10px rgba(0, 0, 0, 0.10), 0 8px 16px -8px rgba(0, 0, 0, 0.06);
+  --shadow-2xl: 0 24px 64px -12px rgba(0, 0, 0, 0.12);
+
+  /* SPACING */
+  --spacing: 0.24rem;
+}
+
+/* ===== SEMANTIC ROLES - dark (primitive palette inherited) ===== */
+.dark {
+  --background: var(--background-900);
+  --foreground: var(--text-50);
+  --card: var(--background-800);
+  --card-foreground: var(--text-50);
+  --popover: var(--background-700);
+  --popover-foreground: var(--text-50);
+
+  --primary: var(--brand-400);
+  --primary-foreground: var(--background-900);
+  --secondary: var(--background-800);
+  --secondary-foreground: var(--text-50);
+  --muted: var(--background-800);
+  --muted-foreground: var(--text-400);
+  --accent: var(--background-700);
+  --accent-foreground: var(--text-50);
+  --destructive: var(--state-error-dark);
+  --destructive-foreground: var(--state-error-foreground);
+  --success: var(--state-success-dark);
+  --success-foreground: var(--state-success-foreground);
+  --border: var(--background-700);
+  --input: var(--background-700);
+  --ring: var(--brand-400);
+
+  --icon: var(--icon-50);
+  --icon-muted: var(--icon-500);
+
+  --chart-1: var(--state-success-dark);
+  --chart-2: var(--brand-400);
+  --chart-3: #ff9f0a;
+  --chart-4: #5e5ce6;
+  --chart-5: #bf5af2;
+
+  --sidebar: var(--background-800);
+  --sidebar-foreground: var(--text-50);
+  --sidebar-primary: var(--brand-400);
+  --sidebar-primary-foreground: var(--background-900);
+  --sidebar-accent: var(--background-700);
+  --sidebar-accent-foreground: var(--text-50);
+  --sidebar-border: var(--background-700);
+  --sidebar-ring: var(--brand-400);
+
+  --shadow-2xs: 0 1px 2px -1px rgba(0, 0, 0, 0.30);
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.30);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.36), 0 1px 3px -1px rgba(0, 0, 0, 0.36);
+  --shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.40), 0 1px 2px -1px rgba(0, 0, 0, 0.36);
+  --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.44), 0 2px 4px -2px rgba(0, 0, 0, 0.36);
+  --shadow-lg: 0 8px 24px -8px rgba(0, 0, 0, 0.50), 0 4px 8px -4px rgba(0, 0, 0, 0.40);
+  --shadow-xl: 0 16px 40px -10px rgba(0, 0, 0, 0.55), 0 8px 16px -8px rgba(0, 0, 0, 0.44);
+  --shadow-2xl: 0 24px 64px -12px rgba(0, 0, 0, 0.60);
+}
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--apple-background);
+    --color-foreground: var(--apple-foreground);
+    --color-card: var(--apple-card);
+    --color-card-foreground: var(--apple-card-foreground);
+    --color-popover: var(--apple-popover);
+    --color-popover-foreground: var(--apple-popover-foreground);
+    --color-primary: var(--apple-primary);
+    --color-primary-foreground: var(--apple-primary-foreground);
+    --color-secondary: var(--apple-secondary);
+    --color-secondary-foreground: var(--apple-secondary-foreground);
+    --color-muted: var(--apple-muted);
+    --color-muted-foreground: var(--apple-muted-foreground);
+    --color-accent: var(--apple-accent);
+    --color-accent-foreground: var(--apple-accent-foreground);
+    --color-destructive: var(--apple-destructive);
+    --color-destructive-foreground: var(--apple-destructive-foreground);
+    --color-border: var(--apple-border);
+    --color-input: var(--apple-input);
+    --color-ring: var(--apple-ring);
+    --color-chart-1: var(--apple-chart-1);
+    --color-chart-2: var(--apple-chart-2);
+    --color-chart-3: var(--apple-chart-3);
+    --color-chart-4: var(--apple-chart-4);
+    --color-chart-5: var(--apple-chart-5);
+    --color-sidebar: var(--apple-sidebar);
+    --color-sidebar-foreground: var(--apple-sidebar-foreground);
+    --color-sidebar-primary: var(--apple-sidebar-primary);
+    --color-sidebar-primary-foreground: var(--apple-sidebar-primary-foreground);
+    --color-sidebar-accent: var(--apple-sidebar-accent);
+    --color-sidebar-accent-foreground: var(--apple-sidebar-accent-foreground);
+    --radius-sm: var(--apple-radius-sm);
+    --radius-md: var(--apple-radius-md);
+    --radius-lg: var(--apple-radius-lg);
+  }
+  @layer base {
+    body { background: var(--apple-background); color: var(--apple-foreground); }
+    td, th { word-break: break-all; word-break: auto-phrase; }
+    th { white-space: nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--apple-background); }
+      .text-background { color: var(--apple-background); }
+      .border-background { border-color: var(--apple-background); }
+      .ring-background { --tw-ring-color: var(--apple-background); }
+      .bg-foreground { background-color: var(--apple-foreground); }
+      .text-foreground { color: var(--apple-foreground); }
+      .border-foreground { border-color: var(--apple-foreground); }
+      .ring-foreground { --tw-ring-color: var(--apple-foreground); }
+      .bg-card { background-color: var(--apple-card); }
+      .text-card { color: var(--apple-card); }
+      .border-card { border-color: var(--apple-card); }
+      .ring-card { --tw-ring-color: var(--apple-card); }
+      .bg-card-foreground { background-color: var(--apple-card-foreground); }
+      .text-card-foreground { color: var(--apple-card-foreground); }
+      .border-card-foreground { border-color: var(--apple-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--apple-card-foreground); }
+      .bg-popover { background-color: var(--apple-popover); }
+      .text-popover { color: var(--apple-popover); }
+      .border-popover { border-color: var(--apple-popover); }
+      .ring-popover { --tw-ring-color: var(--apple-popover); }
+      .bg-popover-foreground { background-color: var(--apple-popover-foreground); }
+      .text-popover-foreground { color: var(--apple-popover-foreground); }
+      .border-popover-foreground { border-color: var(--apple-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--apple-popover-foreground); }
+      .bg-primary { background-color: var(--apple-primary); }
+      .text-primary { color: var(--apple-primary); }
+      .border-primary { border-color: var(--apple-primary); }
+      .ring-primary { --tw-ring-color: var(--apple-primary); }
+      .bg-primary-foreground { background-color: var(--apple-primary-foreground); }
+      .text-primary-foreground { color: var(--apple-primary-foreground); }
+      .border-primary-foreground { border-color: var(--apple-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--apple-primary-foreground); }
+      .bg-secondary { background-color: var(--apple-secondary); }
+      .text-secondary { color: var(--apple-secondary); }
+      .border-secondary { border-color: var(--apple-secondary); }
+      .ring-secondary { --tw-ring-color: var(--apple-secondary); }
+      .bg-secondary-foreground { background-color: var(--apple-secondary-foreground); }
+      .text-secondary-foreground { color: var(--apple-secondary-foreground); }
+      .border-secondary-foreground { border-color: var(--apple-secondary-foreground); }
+      .ring-secondary-foreground { --tw-ring-color: var(--apple-secondary-foreground); }
+      .bg-muted { background-color: var(--apple-muted); }
+      .text-muted { color: var(--apple-muted); }
+      .border-muted { border-color: var(--apple-muted); }
+      .ring-muted { --tw-ring-color: var(--apple-muted); }
+      .bg-muted-foreground { background-color: var(--apple-muted-foreground); }
+      .text-muted-foreground { color: var(--apple-muted-foreground); }
+      .border-muted-foreground { border-color: var(--apple-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--apple-muted-foreground); }
+      .bg-accent { background-color: var(--apple-accent); }
+      .text-accent { color: var(--apple-accent); }
+      .border-accent { border-color: var(--apple-accent); }
+      .ring-accent { --tw-ring-color: var(--apple-accent); }
+      .bg-accent-foreground { background-color: var(--apple-accent-foreground); }
+      .text-accent-foreground { color: var(--apple-accent-foreground); }
+      .border-accent-foreground { border-color: var(--apple-accent-foreground); }
+      .ring-accent-foreground { --tw-ring-color: var(--apple-accent-foreground); }
+      .bg-destructive { background-color: var(--apple-destructive); }
+      .text-destructive { color: var(--apple-destructive); }
+      .border-destructive { border-color: var(--apple-destructive); }
+      .ring-destructive { --tw-ring-color: var(--apple-destructive); }
+      .bg-destructive-foreground { background-color: var(--apple-destructive-foreground); }
+      .text-destructive-foreground { color: var(--apple-destructive-foreground); }
+      .border-destructive-foreground { border-color: var(--apple-destructive-foreground); }
+      .ring-destructive-foreground { --tw-ring-color: var(--apple-destructive-foreground); }
+      .bg-border { background-color: var(--apple-border); }
+      .text-border { color: var(--apple-border); }
+      .border-border { border-color: var(--apple-border); }
+      .ring-border { --tw-ring-color: var(--apple-border); }
+      .bg-input { background-color: var(--apple-input); }
+      .text-input { color: var(--apple-input); }
+      .border-input { border-color: var(--apple-input); }
+      .ring-input { --tw-ring-color: var(--apple-input); }
+      .bg-ring { background-color: var(--apple-ring); }
+      .text-ring { color: var(--apple-ring); }
+      .border-ring { border-color: var(--apple-ring); }
+      .ring-ring { --tw-ring-color: var(--apple-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+<style>
+  /* Accordion toggle */
+  .faq-item summary { cursor: pointer; list-style: none; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item .faq-chevron { transition: transform 240ms cubic-bezier(.3,0,0,1); }
+  .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+  .faq-item .faq-body { animation: faqSlide 240ms cubic-bezier(.3,0,0,1); }
+  @keyframes faqSlide { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item .faq-chevron { transition: none; }
+    .faq-item .faq-body { animation: none; }
+    .plan-card { transition: none; }
+  }
+  @media (max-width: 768px) {
+    .steps-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .plans-row { flex-direction: column !important; align-items: center !important; }
+    .plans-row > article { max-width: 100% !important; min-width: auto !important; }
+  }
+</style>
+
+<main>
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 h-11 flex items-center px-5 mx-auto" style="max-width:1024px; width:100%; background:color-mix(in srgb, var(--background-900) 80%, transparent); -webkit-backdrop-filter:saturate(180%) blur(20px); backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid color-mix(in srgb, var(--background-50) 6%, transparent);">
+    <div class="flex items-center w-full" style="max-width:1024px; margin:0 auto; height:100%;">
+      <span class="text-sm font-bold tracking-wide" style="color:var(--text-50); letter-spacing:0.08em;">声浪</span>
+      <div class="flex-1 flex items-center justify-center gap-1 h-full">
+        <a href="#" data-dom-id="nav-home" class="inline-flex items-center justify-center h-8 px-3 rounded-full text-xs" style="color:var(--text-50); transition:opacity 180ms ease;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">首页</a>
+        <a href="#" data-dom-id="nav-sounds" class="inline-flex items-center justify-center h-8 px-3 rounded-full text-xs" style="color:var(--text-50); transition:opacity 180ms ease;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">声音库</a>
+        <a href="#" class="inline-flex items-center justify-center h-8 px-3 rounded-full text-xs font-semibold" style="color:var(--text-50); opacity:0.6;">定价方案</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="#" class="inline-flex items-center justify-center h-8 px-3 rounded-full text-xs" style="color:var(--text-50); transition:opacity 180ms ease;" onmouseover="this.style.opacity='0.6'" onmouseout="this.style.opacity='1'">登录</a>
+        <a href="#" class="inline-flex items-center justify-center h-8 px-5 rounded-full text-xs font-semibold whitespace-nowrap" style="background:var(--primary); color:var(--background-900); transition:filter 180ms ease;" onmouseover="this.style.filter='brightness(0.96)'" onmouseout="this.style.filter='none'">立即体验</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Pricing Hero Section -->
+  <section class="w-full text-center" style="padding:80px 22px 56px; background:var(--background-900); color:var(--text-50);">
+    <div class="mx-auto" style="max-width:680px;">
+      <h1 class="font-semibold" style="font-size:clamp(28px,3.5vw,56px); line-height:1.1; letter-spacing:-0.005em; color:var(--text-50); margin:0; text-wrap:balance; word-break:keep-all; overflow-wrap:break-word;">成为最佳创作者</h1>
+      <p class="mt-4" style="font-size:17px; line-height:1.47; letter-spacing:-0.022em; color:var(--text-400); margin-top:16px;">从每月 ¥29.9 起，解锁全部声浪功能</p>
+      <div class="flex flex-wrap items-center justify-center gap-3 mt-6" style="margin-top:24px;">
+        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs whitespace-nowrap" style="background:var(--background-700); color:var(--text-50); height:28px;">无限下载</span>
+        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs whitespace-nowrap" style="background:var(--background-700); color:var(--text-50); height:28px;">云端同步</span>
+        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs whitespace-nowrap" style="background:var(--background-700); color:var(--text-50); height:28px;">正版授权</span>
+        <span class="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs whitespace-nowrap" style="background:var(--background-700); color:var(--text-50); height:28px;">随时取消</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plan Tiers Section -->
+  <section class="w-full" style="padding:64px 22px 80px; background:var(--background-900); color:var(--text-50);">
+    <div class="mx-auto" style="max-width:1024px;">
+      <div class="plans-row flex flex-col md:flex-row items-stretch justify-center gap-4" style="gap:12px;">
+
+        <!-- Basic Plan -->
+        <article class="plan-card flex flex-col flex-1 rounded-lg p-8" style="min-width:260px; max-width:340px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:32px; transition:transform 180ms ease, box-shadow 180ms ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+          <div class="flex-1 flex flex-col">
+            <h3 class="text-lg font-semibold" style="font-size:19px; font-weight:600; letter-spacing:0.012em; color:var(--text-50); margin:0 0 4px;">基础版</h3>
+            <p class="text-xs mb-1" style="font-size:12px; color:var(--text-400); letter-spacing:-0.016em;">Basic</p>
+            <div class="mt-4 mb-6" style="margin-top:24px; margin-bottom:32px;">
+              <span class="font-semibold" style="font-size:40px; font-weight:600; line-height:1.1; color:var(--text-50);">¥29.9</span>
+              <span class="text-sm" style="font-size:14px; color:var(--text-400);">/月</span>
+            </div>
+            <ul class="flex flex-col gap-3 flex-1" style="list-style:none; padding:0; margin:0;">
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--text-400);"></i>
+                <span>每月 100 积分</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--text-400);"></i>
+                <span>无限云端同步</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--text-400);"></i>
+                <span>基础筛选器</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--text-400);"></i>
+                <span>桌面端 + 移动端</span>
+              </li>
+            </ul>
+            <a href="#" class="inline-flex items-center justify-center mt-6 h-11 rounded-full text-sm font-semibold whitespace-nowrap" style="margin-top:24px; min-height:44px; padding:8px 22px; background:transparent; color:var(--primary); border:1px solid var(--primary); border-radius:980px; font-size:14px; transition:background-color 180ms ease, color 180ms ease;" onmouseover="this.style.background='var(--primary)'; this.style.color='var(--background-900)'" onmouseout="this.style.background='transparent'; this.style.color='var(--primary)'">开始订阅</a>
+          </div>
+        </article>
+
+        <!-- Creator Plan - Recommended -->
+        <article class="plan-card flex flex-col flex-1 rounded-lg p-8 relative" style="min-width:260px; max-width:340px; background:var(--card); border:2px solid var(--primary); border-radius:var(--radius); padding:32px; box-shadow:0 0 0 1px var(--primary), 0 8px 32px -8px color-mix(in srgb, var(--primary) 25%, transparent); transition:transform 180ms ease, box-shadow 180ms ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+          <div class="flex-1 flex flex-col">
+            <div class="flex items-center justify-between mb-1">
+              <h3 class="text-lg font-semibold" style="font-size:19px; font-weight:600; letter-spacing:0.012em; color:var(--text-50); margin:0;">创作者版</h3>
+              <span class="inline-flex items-center justify-center px-3 rounded-full text-xs font-semibold whitespace-nowrap" style="background:var(--primary); color:var(--background-900); height:24px; font-size:11px;">推荐</span>
+            </div>
+            <p class="text-xs mb-1" style="font-size:12px; color:var(--text-400); letter-spacing:-0.016em;">Creator</p>
+            <div class="mt-4 mb-6" style="margin-top:24px; margin-bottom:32px;">
+              <span class="font-semibold" style="font-size:40px; font-weight:600; line-height:1.1; color:var(--text-50);">¥49.9</span>
+              <span class="text-sm" style="font-size:14px; color:var(--text-400);">/月</span>
+            </div>
+            <ul class="flex flex-col gap-3 flex-1" style="list-style:none; padding:0; margin:0;">
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--primary);"></i>
+                <span>每月 300 积分</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--primary);"></i>
+                <span>无限云端同步</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--primary);"></i>
+                <span>高级筛选器 + AI 推荐</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--primary);"></i>
+                <span>稀有音色库</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--primary);"></i>
+                <span>DAW 插件</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--primary);"></i>
+                <span>桌面端 + 移动端</span>
+              </li>
+            </ul>
+            <a href="#" class="inline-flex items-center justify-center mt-6 h-11 rounded-full text-sm font-semibold whitespace-nowrap" style="margin-top:24px; min-height:44px; padding:8px 22px; background:var(--primary); color:var(--background-900); border:none; border-radius:980px; font-size:14px; transition:filter 180ms ease;" onmouseover="this.style.filter='brightness(0.96)'" onmouseout="this.style.filter='none'">开始订阅</a>
+          </div>
+        </article>
+
+        <!-- Pro Plan -->
+        <article class="plan-card flex flex-col flex-1 rounded-lg p-8" style="min-width:260px; max-width:340px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:32px; transition:transform 180ms ease, box-shadow 180ms ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+          <div class="flex-1 flex flex-col">
+            <h3 class="text-lg font-semibold" style="font-size:19px; font-weight:600; letter-spacing:0.012em; color:var(--text-50); margin:0 0 4px;">专业版</h3>
+            <p class="text-xs mb-1" style="font-size:12px; color:var(--text-400); letter-spacing:-0.016em;">Pro</p>
+            <div class="mt-4 mb-6" style="margin-top:24px; margin-bottom:32px;">
+              <span class="font-semibold" style="font-size:40px; font-weight:600; line-height:1.1; color:var(--text-50);">¥99.9</span>
+              <span class="text-sm" style="font-size:14px; color:var(--text-400);">/月</span>
+            </div>
+            <ul class="flex flex-col gap-3 flex-1" style="list-style:none; padding:0; margin:0;">
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--text-400);"></i>
+                <span>每月 1000 积分</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--text-400);"></i>
+                <span>无限云端同步</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--text-400);"></i>
+                <span>全部筛选器 + AI 推荐</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--text-400);"></i>
+                <span>稀有音色库 + 独占音色</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--text-400);"></i>
+                <span>DAW 插件 + API 接入</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--text-400);"></i>
+                <span>优先客服</span>
+              </li>
+              <li class="flex items-start gap-2 text-sm" style="font-size:14px; line-height:1.5; color:var(--text-300);">
+                <i data-lucide="check" style="width:16px; height:16px; flex-shrink:0; margin-top:2px; color:var(--text-400);"></i>
+                <span>桌面端 + 移动端</span>
+              </li>
+            </ul>
+            <a href="#" class="inline-flex items-center justify-center mt-6 h-11 rounded-full text-sm font-semibold whitespace-nowrap" style="margin-top:24px; min-height:44px; padding:8px 22px; background:transparent; color:var(--primary); border:1px solid var(--primary); border-radius:980px; font-size:14px; transition:background-color 180ms ease, color 180ms ease;" onmouseover="this.style.background='var(--primary)'; this.style.color='var(--background-900)'" onmouseout="this.style.background='transparent'; this.style.color='var(--primary)'">开始订阅</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="w-full" style="padding:80px 22px; background:var(--background-800); color:var(--text-50);">
+    <div class="mx-auto" style="max-width:980px;">
+      <div class="steps-grid grid gap-8" style="grid-template-columns:repeat(3, 1fr);">
+
+          <!-- Step 1 -->
+          <div class="text-center">
+            <div class="inline-flex items-center justify-center rounded-full mb-4" style="width:48px; height:48px; background:var(--background-700); border-radius:980px;">
+              <span class="font-semibold text-sm" style="color:var(--primary); font-size:17px;">1</span>
+            </div>
+            <h3 class="font-semibold mb-2" style="font-size:19px; font-weight:600; letter-spacing:0.012em; color:var(--text-50); margin:8px 0 0;">订阅计划</h3>
+            <p class="text-sm" style="font-size:14px; line-height:1.5; color:var(--text-400); letter-spacing:-0.016em; margin-top:8px;">选择适合你的方案，开始创作之旅</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="text-center">
+            <div class="inline-flex items-center justify-center rounded-full mb-4" style="width:48px; height:48px; background:var(--background-700); border-radius:980px;">
+              <span class="font-semibold text-sm" style="color:var(--primary); font-size:17px;">2</span>
+            </div>
+            <h3 class="font-semibold mb-2" style="font-size:19px; font-weight:600; letter-spacing:0.012em; color:var(--text-50); margin:8px 0 0;">下载采样</h3>
+            <p class="text-sm" style="font-size:14px; line-height:1.5; color:var(--text-400); letter-spacing:-0.016em; margin-top:8px;">浏览百万级音色库，下载你需要的素材</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="text-center">
+            <div class="inline-flex items-center justify-center rounded-full mb-4" style="width:48px; height:48px; background:var(--background-700); border-radius:980px;">
+              <span class="font-semibold text-sm" style="color:var(--primary); font-size:17px;">3</span>
+            </div>
+            <h3 class="font-semibold mb-2" style="font-size:19px; font-weight:600; letter-spacing:0.012em; color:var(--text-50); margin:8px 0 0;">创作音乐</h3>
+            <p class="text-sm" style="font-size:14px; line-height:1.5; color:var(--text-400); letter-spacing:-0.016em; margin-top:8px;">在你的 DAW 中使用，释放无限灵感</p>
+          </div>
+
+        </div>
+      <p class="text-center mt-8 text-sm" style="margin-top:32px; font-size:13px; color:var(--text-500); letter-spacing:-0.01em;">未使用积分自动结转至下月</p>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="w-full" style="padding:80px 22px; background:var(--background-900); color:var(--text-50);">
+    <div class="mx-auto" style="max-width:680px;">
+      <h2 class="text-center font-semibold mb-10" style="font-size:clamp(22px,2.4vw,32px); font-weight:600; line-height:1.2; letter-spacing:-0.015em; color:var(--text-50); margin:0 0 40px;">常见问题</h2>
+
+      <div class="flex flex-col gap-2">
+        <!-- FAQ 1 -->
+        <details class="faq-item rounded-lg" style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
+          <summary class="flex items-center justify-between px-5 py-4" style="padding:16px 20px; font-size:15px; font-weight:500; color:var(--text-50); letter-spacing:-0.016em;">
+            <span>积分是什么？如何使用？</span>
+            <i data-lucide="chevron-down" class="faq-chevron" style="width:16px; height:16px; flex-shrink:0; color:var(--text-400); margin-left:12px;"></i>
+          </summary>
+          <div class="faq-body px-5 pb-4" style="padding:0 20px 16px; font-size:14px; line-height:1.6; color:var(--text-400);">
+            积分用于下载采样音色。每个音色消耗不同积分，积分在每月初刷新，未使用的积分会自动结转。
+          </div>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="faq-item rounded-lg" style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
+          <summary class="flex items-center justify-between px-5 py-4" style="padding:16px 20px; font-size:15px; font-weight:500; color:var(--text-50); letter-spacing:-0.016em;">
+            <span>支持哪些 DAW？</span>
+            <i data-lucide="chevron-down" class="faq-chevron" style="width:16px; height:16px; flex-shrink:0; color:var(--text-400); margin-left:12px;"></i>
+          </summary>
+          <div class="faq-body px-5 pb-4" style="padding:0 20px 16px; font-size:14px; line-height:1.6; color:var(--text-400);">
+            我们支持 Ableton Live, FL Studio, Logic Pro, Cubase, Pro Tools 等主流 DAW，通过桌面插件无缝集成。
+          </div>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="faq-item rounded-lg" style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
+          <summary class="flex items-center justify-between px-5 py-4" style="padding:16px 20px; font-size:15px; font-weight:500; color:var(--text-50); letter-spacing:-0.016em;">
+            <span>可以随时取消订阅吗？</span>
+            <i data-lucide="chevron-down" class="faq-chevron" style="width:16px; height:16px; flex-shrink:0; color:var(--text-400); margin-left:12px;"></i>
+          </summary>
+          <div class="faq-body px-5 pb-4" style="padding:0 20px 16px; font-size:14px; line-height:1.6; color:var(--text-400);">
+            当然可以。你可以在账户设置中随时取消，已下载的采样永久属于你。
+          </div>
+        </details>
+
+        <!-- FAQ 4 -->
+        <details class="faq-item rounded-lg" style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
+          <summary class="flex items-center justify-between px-5 py-4" style="padding:16px 20px; font-size:15px; font-weight:500; color:var(--text-50); letter-spacing:-0.016em;">
+            <span>采样可以商用吗？</span>
+            <i data-lucide="chevron-down" class="faq-chevron" style="width:16px; height:16px; flex-shrink:0; color:var(--text-400); margin-left:12px;"></i>
+          </summary>
+          <div class="faq-body px-5 pb-4" style="padding:0 20px 16px; font-size:14px; line-height:1.6; color:var(--text-400);">
+            所有采样均为 100% 正版授权，可自由用于商业音乐制作、发行和现场演出。
+          </div>
+        </details>
+
+        <!-- FAQ 5 -->
+        <details class="faq-item rounded-lg" style="background:var(--card); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;">
+          <summary class="flex items-center justify-between px-5 py-4" style="padding:16px 20px; font-size:15px; font-weight:500; color:var(--text-50); letter-spacing:-0.016em;">
+            <span>如何获取更多积分？</span>
+            <i data-lucide="chevron-down" class="faq-chevron" style="width:16px; height:16px; flex-shrink:0; color:var(--text-400); margin-left:12px;"></i>
+          </summary>
+          <div class="faq-body px-5 pb-4" style="padding:0 20px 16px; font-size:14px; line-height:1.6; color:var(--text-400);">
+            升级到更高等级的计划即可获得更多每月积分，或购买额外积分包。
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA Section -->
+  <section class="w-full text-center" style="padding:80px 22px; background:var(--background-800); color:var(--text-50);">
+    <div class="mx-auto" style="max-width:680px;">
+      <h2 class="font-semibold" style="font-size:clamp(22px,2.4vw,32px); font-weight:600; line-height:1.2; letter-spacing:-0.015em; color:var(--text-50); margin:0 0 24px;">准备好开始创作了吗？</h2>
+      <a href="#" data-dom-id="cta-sounds" class="inline-flex items-center justify-center h-11 rounded-full text-sm font-semibold whitespace-nowrap" style="min-height:44px; padding:8px 22px; background:var(--primary); color:var(--background-900); border:none; border-radius:980px; font-size:14px; transition:filter 180ms ease;" onmouseover="this.style.filter='brightness(0.96)'" onmouseout="this.style.filter='none'">免费体验</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background:var(--background-800); color:var(--text-500); font-size:12px; line-height:1.33; letter-spacing:-0.01em; padding:18px 22px 22px; border-top:1px solid var(--border);">
+    <div style="max-width:1024px; margin:0 auto;">
+      <div class="flex flex-wrap items-center justify-between gap-4" style="padding-top:18px;">
+        <span style="font-size:12px; color:var(--text-500);">Copyright 2025 声浪SoundWave. All rights reserved.</span>
+        <div class="flex flex-wrap gap-4" style="font-size:12px;">
+          <a href="#" style="color:var(--text-500); font-size:12px;">隐私政策</a>
+          <a href="#" style="color:var(--text-500); font-size:12px;">使用条款</a>
+          <a href="#" style="color:var(--text-500); font-size:12px;">联系我们</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</main>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

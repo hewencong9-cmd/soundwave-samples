@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "skillProvenance": {
+    "name": "solo-design",
+    "version": "2026.07.06.8",
+    "version_source": "skill-version.json",
+    "runtime_skill_dir": "c:\\Users\\Administrator\\.trae-cn\\builtin\\design\\default\\skills\\solo-design",
+    "recorded_at": "2026-07-18T16:30:00.000Z",
+    "read_status": "ok"
+  },
+  "operatingMode": "library-bound",
+  "renderBlockingErrorCount": 0,
+  "softWarningCount": 2,
+  "renderBlockingErrors": [],
+  "softWarnings": [
+    "[library-bound-css] pricing.html: Library-bound mode discourages custom CSS class definitions in <style> blocks (.faq-chevron, .faq-body, .plan-card, .steps-grid, .plans-row). Prefer Tailwind utilities plus Library brand CSS variables/component JSON instead.",
+    "[library-bound-css] sounds.html: Library-bound mode discourages custom CSS class definitions in <style> blocks (.pack-grid). Prefer Tailwind utilities plus Library brand CSS variables/component JSON instead."
+  ],
+  "repairPlanHints": [],
+  "errorCount": 0,
+  "warningCount": 2,
+  "errors": [],
+  "warnings": [
+    "[library-bound-css] pricing.html: Library-bound mode discourages custom CSS class definitions in <style> blocks (.faq-chevron, .faq-body, .plan-card, .steps-grid, .plans-row). Prefer Tailwind utilities plus Library brand CSS variables/component JSON instead.",
+    "[library-bound-css] sounds.html: Library-bound mode discourages custom CSS class definitions in <style> blocks (.pack-grid). Prefer Tailwind utilities plus Library brand CSS variables/component JSON instead."
+  ],
+  "designDir": "d:\\音乐采样网址\\soundwave",
+  "expectedPages": 4,
+  "requireInteractions": null,
+  "checkedAt": "2026-07-18T12:00:20.377Z"
+}

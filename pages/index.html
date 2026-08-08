@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>声浪SoundWave - 释放你的音乐灵感</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://unpkg.com/lucide@1.7.0/dist/umd/lucide.min.js"></script>
+<style id="theme-vars">
+/* solo-design consumption aliases */
+:root {
+--apple-background: var(--background, #000000);
+  --apple-foreground: var(--foreground, #f5f5f7);
+--apple-card: var(--card, var(--background));
+--apple-card-foreground: var(--card-foreground, var(--foreground));
+--apple-popover: var(--popover, var(--card));
+--apple-popover-foreground: var(--popover-foreground, var(--card-foreground, var(--foreground)));
+--apple-primary: var(--primary, #2e8dff);
+--apple-primary-foreground: var(--primary-foreground, #000000);
+--apple-secondary: var(--secondary, var(--muted, var(--card)));
+--apple-secondary-foreground: var(--secondary-foreground, var(--foreground));
+--apple-muted: var(--muted, var(--card));
+--apple-muted-foreground: var(--muted-foreground, #8e8e93);
+--apple-accent: var(--accent, var(--secondary, var(--muted, var(--card))));
+--apple-accent-foreground: var(--accent-foreground, var(--foreground));
+--apple-destructive: var(--destructive, #ff453a);
+--apple-destructive-foreground: var(--destructive-foreground, #ffffff);
+--apple-border: var(--border, #3a3a3c);
+--apple-input: var(--input, var(--border));
+--apple-ring: var(--ring, var(--primary));
+--apple-chart-1: var(--chart-1, var(--primary));
+--apple-chart-2: var(--chart-2, var(--secondary, var(--primary)));
+--apple-chart-3: var(--chart-3, var(--accent, var(--primary)));
+--apple-chart-4: var(--chart-4, var(--muted-foreground, var(--foreground)));
+--apple-chart-5: var(--chart-5, var(--foreground));
+--apple-sidebar: var(--sidebar, var(--background));
+--apple-sidebar-foreground: var(--sidebar-foreground, var(--foreground));
+--apple-sidebar-primary: var(--sidebar-primary, var(--primary));
+--apple-sidebar-primary-foreground: var(--sidebar-primary-foreground, var(--primary-foreground));
+--apple-sidebar-accent: var(--accent, var(--muted, var(--card))));
+--apple-sidebar-accent-foreground: var(--sidebar-accent-foreground, var(--accent-foreground, var(--foreground)));
+}
+:root {
+  --brand-50: #e8f2ff; --brand-100: #cfe5ff; --brand-200: #9fcbff; --brand-300: #66abff; --brand-400: #2e8dff; --brand-500: #007aff; --brand-600: #0064d6; --brand-700: #004fad; --brand-800: #003b82; --brand-900: #00275a;
+  --background-50: #ffffff; --background-100: #f7f7fa; --background-200: #f2f2f7; --background-300: #e5e5ea; --background-400: #d1d1d6; --background-500: #aeaeb2; --background-600: #8e8e93; --background-700: #3a3a3c; --background-800: #1c1c1e; --background-900: #000000;
+  --text-50: #f5f5f7; --text-100: #e3e3e8; --text-200: #c7c7cc; --text-300: #aeaeb2; --text-400: #8e8e93; --text-500: #6e6e73; --text-600: #48484a; --text-700: #3c3c43; --text-800: #1d1d1f; --text-900: #000000;
+  --icon-50: #f5f5f7; --icon-100: #e5e5ea; --icon-200: #d1d1d6; --icon-300: #c7c7cc; --icon-400: #aeaeb2; --icon-500: #8e8e93; --icon-600: #6e6e73; --icon-700: #48484a; --icon-800: #2c2c2e; --icon-900: #1d1d1f;
+  --state-success: #34c759; --state-success-dark: #30d158; --state-success-surface: #e9f9ee; --state-success-foreground: #ffffff;
+  --state-error: #ff3b30; --state-error-dark: #ff453a; --state-error-surface: #ffecea; --state-error-foreground: #ffffff;
+  --background: var(--background-50); --foreground: var(--text-800); --card: var(--background-50); --card-foreground: var(--text-800); --popover: var(--background-50); --popover-foreground: var(--text-900);
+  --primary: var(--brand-500); --primary-foreground: var(--background-50); --secondary: var(--background-200); --secondary-foreground: var(--text-800);
+  --muted: var(--background-200); --muted-foreground: var(--text-400); --accent: var(--background-100); --accent-foreground: var(--text-800);
+  --destructive: var(--state-error); --destructive-foreground: var(--state-error-foreground); --success: var(--state-success); --success-foreground: var(--state-success-foreground);
+  --border: var(--background-300); --input: var(--background-400); --ring: var(--brand-500);
+  --icon: var(--icon-900); --icon-muted: var(--icon-500);
+  --chart-1: var(--state-success); --chart-2: var(--brand-500); --chart-3: #ff9500; --chart-4: #5856d6; --chart-5: #af52de;
+  --sidebar: var(--background-200); --sidebar-foreground: var(--text-800); --sidebar-primary: var(--brand-500); --sidebar-primary-foreground: var(--background-50);
+  --sidebar-accent: var(--background-300); --sidebar-accent-foreground: var(--text-800); --sidebar-border: var(--background-300); --sidebar-ring: var(--brand-500);
+  --font-sans: DM Sans, ui-sans-serif, sans-serif, system-ui; --font-serif: DM Sans, ui-sans-serif, sans-serif, system-ui; --font-mono: JetBrains Mono, monospace; --tracking-normal: 0em;
+  --radius: 1.2rem;
+  --shadow-2xs: 0 1px 2px -1px rgba(0,0,0,0.04); --shadow-xs: 0 1px 2px 0 rgba(0,0,0,0.04); --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.05),0 1px 3px -1px rgba(0,0,0,0.05);
+  --shadow: 0 2px 4px -1px rgba(0,0,0,0.06),0 1px 2px -1px rgba(0,0,0,0.05); --shadow-md: 0 4px 8px -2px rgba(0,0,0,0.06),0 2px 4px -2px rgba(0,0,0,0.05);
+  --shadow-lg: 0 8px 24px -8px rgba(0,0,0,0.08),0 4px 8px -4px rgba(0,0,0,0.05); --shadow-xl: 0 16px 40px -10px rgba(0,0,0,0.10),0 8px 16px -8px rgba(0,0,0,0.06);
+  --shadow-2xl: 0 24px 64px -12px rgba(0,0,0,0.12); --spacing: 0.24rem;
+}
+.dark {
+  --background: var(--background-900); --foreground: var(--text-50); --card: var(--background-800); --card-foreground: var(--text-50); --popover: var(--background-700); --popover-foreground: var(--text-50);
+  --primary: var(--brand-400); --primary-foreground: var(--background-900); --secondary: var(--background-800); --secondary-foreground: var(--text-50);
+  --muted: var(--background-800); --muted-foreground: var(--text-400); --accent: var(--background-700); --accent-foreground: var(--text-50);
+  --destructive: var(--state-error-dark); --destructive-foreground: var(--state-error-foreground); --success: var(--state-success-dark); --success-foreground: var(--state-success-foreground);
+  --border: var(--background-700); --input: var(--background-700); --ring: var(--brand-400);
+  --icon: var(--icon-50); --icon-muted: var(--icon-500);
+  --chart-1: var(--state-success-dark); --chart-2: var(--brand-400); --chart-3: #ff9f0a; --chart-4: #5e5ce6; --chart-5: #bf5af2;
+  --sidebar: var(--background-800); --sidebar-foreground: var(--text-50); --sidebar-primary: var(--brand-400); --sidebar-primary-foreground: var(--background-900);
+  --sidebar-accent: var(--background-700); --sidebar-accent-foreground: var(--text-50); --sidebar-border: var(--background-700); --sidebar-ring: var(--brand-400);
+  --shadow-2xs: 0 1px 2px -1px rgba(0,0,0,0.30); --shadow-xs: 0 1px 2px 0 rgba(0,0,0,0.30); --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.36),0 1px 3px -1px rgba(0,0,0,0.36);
+  --shadow: 0 2px 4px -1px rgba(0,0,0,0.40),0 1px 2px -1px rgba(0,0,0,0.36); --shadow-md: 0 4px 8px -2px rgba(0,0,0,0.44),0 2px 4px -2px rgba(0,0,0,0.36);
+  --shadow-lg: 0 8px 24px -8px rgba(0,0,0,0.50),0 4px 8px -4px rgba(0,0,0,0.40); --shadow-xl: 0 16px 40px -10px rgba(0,0,0,0.55),0 8px 16px -8px rgba(0,0,0,0.44);
+  --shadow-2xl: 0 24px 64px -12px rgba(0,0,0,0.60);
+}
+</style>
+<style type="text/tailwindcss">
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) * 1.2);
+}
+@layer base {
+  body { background: var(--background); color: var(--foreground); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+}
+</style>
+<style id="semantic-token-fallback">
+.bg-background{background-color:var(--background)}.text-foreground{color:var(--foreground)}.bg-card{background-color:var(--card)}.text-card-foreground{color:var(--card-foreground)}.bg-popover{background-color:var(--popover)}.text-popover-foreground{color:var(--popover-foreground)}.bg-primary{background-color:var(--primary)}.text-primary-foreground{color:var(--primary-foreground)}.bg-secondary{background-color:var(--secondary)}.text-secondary-foreground{color:var(--secondary-foreground)}.bg-muted{background-color:var(--muted)}.text-muted-foreground{color:var(--muted-foreground)}.bg-accent{background-color:var(--accent)}.text-accent-foreground{color:var(--accent-foreground)}.bg-destructive{background-color:var(--destructive)}.text-destructive-foreground{color:var(--destructive-foreground)}.bg-success{background-color:var(--success)}.text-success-foreground{color:var(--success-foreground)}.border-border{border-color:var(--border)}.bg-input{background-color:var(--input)}.ring-ring{--tw-ring-color:var(--ring)}
+</style>
+<style>
+[data-icon]{display:inline-block;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;background-color:currentColor;}
+</style>
+</head>
+<body class="min-h-screen" style="background:var(--background);color:var(--foreground);font-family:var(--font-sans);">
+
+<!-- ===== Top Navigation Bar ===== -->
+<nav class="sticky top-0 z-50 w-full flex items-center justify-center" style="height:48px;background:var(--background-900);border-bottom:1px solid var(--border);">
+  <div class="w-full max-w-6xl mx-auto flex items-center justify-between px-6 h-full">
+    <a href="#" class="text-lg font-bold tracking-tight whitespace-nowrap" style="color:var(--foreground);font-size:16px;">声浪</a>
+    <div class="flex items-center gap-1">
+      <a href="#" class="inline-flex items-center justify-center rounded-full whitespace-nowrap transition-colors duration-150" style="height:32px;padding:0 12px;font-size:13px;font-weight:500;color:var(--foreground);background:var(--brand-500);opacity:1;" aria-current="page">首页</a>
+      <a href="#" data-dom-id="nav-sounds" class="inline-flex items-center justify-center rounded-full whitespace-nowrap transition-colors duration-150" style="height:32px;padding:0 12px;font-size:13px;font-weight:400;color:var(--foreground);opacity:0.8;" onmouseover="this.style.background='var(--secondary)'" onmouseout="this.style.background='transparent'">声音库</a>
+      <a href="#" data-dom-id="nav-pricing" class="inline-flex items-center justify-center rounded-full whitespace-nowrap transition-colors duration-150" style="height:32px;padding:0 12px;font-size:13px;font-weight:400;color:var(--foreground);opacity:0.8;" onmouseover="this.style.background='var(--secondary)'" onmouseout="this.style.background='transparent'">定价方案</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="#" class="inline-flex items-center justify-center whitespace-nowrap transition-colors duration-150" style="font-size:13px;font-weight:400;color:var(--foreground);opacity:0.8;padding:0 4px;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--foreground)'">登录</a>
+      <a href="#" class="inline-flex items-center justify-center rounded-full whitespace-nowrap transition-all duration-150" style="height:36px;padding:0 20px;font-size:13px;font-weight:600;background:var(--primary);color:var(--primary-foreground);box-shadow:var(--shadow-sm);" onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='brightness(1)'">立即体验</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <!-- ===== Hero Section ===== -->
+  <section class="relative w-full flex flex-col items-center justify-center text-center overflow-hidden" style="padding:80px 24px 64px;min-height:520px;">
+    <div class="absolute inset-0 z-0" style="background-image:url('../assets/hero-waveform.jpg');background-size:cover;background-position:center;" aria-hidden="true"></div>
+    <div class="absolute inset-0 z-0" style="background:rgba(0,0,0,0.65);" aria-hidden="true"></div>
+    <div class="relative z-10 flex flex-col items-center max-w-3xl mx-auto">
+      <h1 style="margin:0;font-size:clamp(32px,5vw,64px);font-weight:600;line-height:1.08;letter-spacing:-0.02em;color:var(--foreground);text-wrap:balance;word-break:keep-all;overflow-wrap:break-word;">释放你的音乐灵感</h1>
+      <p style="margin:16px 0 0;font-size:18px;line-height:1.55;font-weight:400;color:var(--muted-foreground);max-width:560px;">百万级正版采样，一键探索无限可能</p>
+      <!-- Search Input -->
+      <div class="flex items-center w-full mt-8" style="max-width:520px;height:44px;border:1px solid var(--border);border-radius:var(--radius);background:var(--background-800);padding:0 16px;">
+        <i data-lucide="search" class="shrink-0" style="width:16px;height:16px;color:var(--muted-foreground);"></i>
+        <input type="text" placeholder="搜索任意声音，如 '808 鼓声'" class="flex-1 min-w-0 border-0 outline-0 bg-transparent" style="font-size:14px;font-weight:400;color:var(--foreground);padding:0 12px;font-family:var(--font-sans);" aria-label="搜索采样">
+      </div>
+      <!-- CTA Button -->
+      <a href="#" class="inline-flex items-center justify-center rounded-full whitespace-nowrap mt-5 transition-all duration-150" style="height:40px;padding:0 24px;font-size:14px;font-weight:600;background:var(--primary);color:var(--primary-foreground);box-shadow:var(--shadow-sm);" onmouseover="this.style.filter='brightness(0.9)'" onmouseout="this.style.filter='brightness(1)'">免费体验</a>
+      <!-- Genre Tab Pills -->
+      <div class="flex flex-wrap items-center justify-center mt-6" style="gap:8px;">
+        <span class="inline-flex items-center justify-center rounded-full whitespace-nowrap" style="height:30px;padding:0 14px;font-size:12px;font-weight:500;background:var(--secondary);color:var(--foreground);">嘻哈</span>
+        <span class="inline-flex items-center justify-center rounded-full whitespace-nowrap" style="height:30px;padding:0 14px;font-size:12px;font-weight:500;background:var(--secondary);color:var(--foreground);">电子</span>
+        <span class="inline-flex items-center justify-center rounded-full whitespace-nowrap" style="height:30px;padding:0 14px;font-size:12px;font-weight:500;background:var(--secondary);color:var(--foreground);">民谣</span>
+        <span class="inline-flex items-center justify-center rounded-full whitespace-nowrap" style="height:30px;padding:0 14px;font-size:12px;font-weight:500;background:var(--secondary);color:var(--foreground);">R&amp;B</span>
+        <span class="inline-flex items-center justify-center rounded-full whitespace-nowrap" style="height:30px;padding:0 14px;font-size:12px;font-weight:500;background:var(--secondary);color:var(--foreground);">古风</span>
+        <span class="inline-flex items-center justify-center rounded-full whitespace-nowrap" style="height:30px;padding:0 14px;font-size:12px;font-weight:500;background:var(--secondary);color:var(--foreground);">流行</span>
+        <span class="inline-flex items-center justify-center rounded-full whitespace-nowrap" style="height:30px;padding:0 14px;font-size:12px;font-weight:500;background:var(--secondary);color:var(--foreground);">摇滚</span>
+        <span class="inline-flex items-center justify-center rounded-full whitespace-nowrap" style="height:30px;padding:0 14px;font-size:12px;font-weight:500;color:var(--primary);">更多+</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Featured Sample Packs Section ===== -->
+  <section class="w-full" style="padding:80px 24px;background:var(--background);">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-baseline justify-between mb-8">
+        <h2 style="margin:0;font-size:28px;font-weight:600;line-height:1.14;letter-spacing:-0.01em;color:var(--foreground);">热门采样包</h2>
+        <a href="#" data-dom-id="cta-sounds" class="inline-flex items-center gap-1 whitespace-nowrap transition-colors duration-150" style="font-size:14px;font-weight:500;color:var(--primary);" onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'">查看全部 ›</a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <!-- Card 1: 街头律动 -->
+        <article class="flex flex-col" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.18s ease,box-shadow 0.18s ease;box-shadow:var(--shadow-sm);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='none';this.style.boxShadow='var(--shadow-sm)'">
+          <div class="w-full" style="aspect-ratio:16/10;background:var(--background-700);overflow:hidden;">
+            <img src="../assets/pack-hiphop.jpg" alt="街头律动采样包" class="w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="flex flex-col gap-2" style="padding:16px 20px 20px;">
+            <div class="flex items-center justify-between">
+              <h3 style="margin:0;font-size:16px;font-weight:600;line-height:1.25;color:var(--foreground);">街头律动</h3>
+              <button class="inline-flex items-center justify-center shrink-0 rounded-full transition-colors duration-150" style="width:32px;height:32px;background:var(--primary);color:var(--primary-foreground);" aria-label="播放街头律动">
+                <i data-lucide="play" style="width:14px;height:14px;"></i>
+              </button>
+            </div>
+            <p class="line-clamp-2" style="margin:0;font-size:13px;line-height:1.5;color:var(--muted-foreground);">硬核 808 鼓组与街头氛围采样，专为嘻哈制作打造</p>
+            <div class="flex items-center gap-2 mt-1">
+              <span class="inline-flex items-center justify-center rounded-lg whitespace-nowrap" style="height:22px;padding:0 8px;font-size:11px;font-weight:500;background:var(--secondary);color:var(--muted-foreground);">嘻哈</span>
+              <span class="inline-flex items-center justify-center rounded-lg whitespace-nowrap" style="height:22px;padding:0 8px;font-size:11px;font-weight:500;background:var(--secondary);color:var(--muted-foreground);">808</span>
+            </div>
+          </div>
+        </article>
+        <!-- Card 2: 电子脉冲 -->
+        <article class="flex flex-col" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.18s ease,box-shadow 0.18s ease;box-shadow:var(--shadow-sm);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='none';this.style.boxShadow='var(--shadow-sm)'">
+          <div class="w-full" style="aspect-ratio:16/10;background:var(--background-700);overflow:hidden;">
+            <img src="../assets/pack-electronic.jpg" alt="电子脉冲采样包" class="w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="flex flex-col gap-2" style="padding:16px 20px 20px;">
+            <div class="flex items-center justify-between">
+              <h3 style="margin:0;font-size:16px;font-weight:600;line-height:1.25;color:var(--foreground);">电子脉冲</h3>
+              <button class="inline-flex items-center justify-center shrink-0 rounded-full transition-colors duration-150" style="width:32px;height:32px;background:var(--primary);color:var(--primary-foreground);" aria-label="播放电子脉冲">
+                <i data-lucide="play" style="width:14px;height:14px;"></i>
+              </button>
+            </div>
+            <p class="line-clamp-2" style="margin:0;font-size:13px;line-height:1.5;color:var(--muted-foreground);">未来感合成器音色与电子节拍循环，释放无限创意</p>
+            <div class="flex items-center gap-2 mt-1">
+              <span class="inline-flex items-center justify-center rounded-lg whitespace-nowrap" style="height:22px;padding:0 8px;font-size:11px;font-weight:500;background:var(--secondary);color:var(--muted-foreground);">电子</span>
+              <span class="inline-flex items-center justify-center rounded-lg whitespace-nowrap" style="height:22px;padding:0 8px;font-size:11px;font-weight:500;background:var(--secondary);color:var(--muted-foreground);">合成器</span>
+            </div>
+          </div>
+        </article>
+        <!-- Card 3: 慵懒时光 -->
+        <article class="flex flex-col" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.18s ease,box-shadow 0.18s ease;box-shadow:var(--shadow-sm);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='none';this.style.boxShadow='var(--shadow-sm)'">
+          <div class="w-full" style="aspect-ratio:16/10;background:var(--background-700);overflow:hidden;">
+            <img src="../assets/pack-lofi.jpg" alt="慵懒时光采样包" class="w-full h-full object-cover" loading="lazy">
+          </div>
+          <div class="flex flex-col gap-2" style="padding:16px 20px 20px;">
+            <div class="flex items-center justify-between">
+              <h3 style="margin:0;font-size:16px;font-weight:600;line-height:1.25;color:var(--foreground);">慵懒时光</h3>
+              <button class="inline-flex items-center justify-center shrink-0 rounded-full transition-colors duration-150" style="width:32px;height:32px;background:var(--primary);color:var(--primary-foreground);" aria-label="播放慵懒时光">
+                <i data-lucide="play" style="width:14px;height:14px;"></i>
+              </button>
+            </div>
+            <p class="line-clamp-2" style="margin:0;font-size:13px;line-height:1.5;color:var(--muted-foreground);">温暖 Lo-Fi 质感采样，柔化节拍营造氛围感</p>
+            <div class="flex items-center gap-2 mt-1">
+              <span class="inline-flex items-center justify-center rounded-lg whitespace-nowrap" style="height:22px;padding:0 8px;font-size:11px;font-weight:500;background:var(--secondary);color:var(--muted-foreground);">Lo-Fi</span>
+              <span class="inline-flex items-center justify-center rounded-lg whitespace-nowrap" style="height:22px;padding:0 8px;font-size:11px;font-weight:500;background:var(--secondary);color:var(--muted-foreground);">氛围</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Creator Tools Section ===== -->
+  <section class="w-full" style="padding:80px 24px;background:var(--background-900);">
+    <div class="max-w-6xl mx-auto">
+      <h2 style="margin:0 0 40px;font-size:28px;font-weight:600;line-height:1.14;letter-spacing:-0.01em;color:var(--foreground);text-align:center;">创作者工具</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- Tool 1: 声浪插件 -->
+        <article class="flex flex-col items-center text-center" style="padding:32px 24px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);transition:transform 0.18s ease,box-shadow 0.18s ease;box-shadow:var(--shadow-sm);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='none';this.style.boxShadow='var(--shadow-sm)'">
+          <div class="inline-flex items-center justify-center rounded-full mb-4" style="width:48px;height:48px;background:var(--secondary);color:var(--primary);">
+            <i data-lucide="download" style="width:22px;height:22px;"></i>
+          </div>
+          <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;line-height:1.2;color:var(--foreground);">声浪插件</h3>
+          <p style="margin:0;font-size:13px;line-height:1.5;color:var(--muted-foreground);max-width:280px;">在你的 DAW 中直接搜索和试听采样</p>
+        </article>
+        <!-- Tool 2: 云端同步 -->
+        <article class="flex flex-col items-center text-center" style="padding:32px 24px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);transition:transform 0.18s ease,box-shadow 0.18s ease;box-shadow:var(--shadow-sm);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='none';this.style.boxShadow='var(--shadow-sm)'">
+          <div class="inline-flex items-center justify-center rounded-full mb-4" style="width:48px;height:48px;background:var(--secondary);color:var(--primary);">
+            <i data-lucide="cloud" style="width:22px;height:22px;"></i>
+          </div>
+          <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;line-height:1.2;color:var(--foreground);">云端同步</h3>
+          <p style="margin:0;font-size:13px;line-height:1.5;color:var(--muted-foreground);max-width:280px;">采样自动同步至所有设备</p>
+        </article>
+        <!-- Tool 3: AI 推荐 -->
+        <article class="flex flex-col items-center text-center" style="padding:32px 24px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);transition:transform 0.18s ease,box-shadow 0.18s ease;box-shadow:var(--shadow-sm);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='none';this.style.boxShadow='var(--shadow-sm)'">
+          <div class="inline-flex items-center justify-center rounded-full mb-4" style="width:48px;height:48px;background:var(--secondary);color:var(--primary);">
+            <i data-lucide="star" style="width:22px;height:22px;"></i>
+          </div>
+          <h3 style="margin:0 0 8px;font-size:17px;font-weight:600;line-height:1.2;color:var(--foreground);">AI 推荐</h3>
+          <p style="margin:0;font-size:13px;line-height:1.5;color:var(--muted-foreground);max-width:280px;">智能推荐适合你风格的采样</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Trust Signals Row ===== -->
+  <section class="w-full" style="padding:60px 24px;background:var(--background);">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-0" style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+        <!-- Signal 1 -->
+        <div class="flex flex-col items-center gap-2 text-center" style="padding:32px 24px;">
+          <div class="inline-flex items-center justify-center" style="width:36px;height:36px;color:var(--primary);">
+            <i data-lucide="shield-check" style="width:36px;height:36px;stroke-width:1.4;"></i>
+          </div>
+          <h3 style="margin:6px 0 0;font-size:17px;font-weight:600;line-height:1.2;color:var(--foreground);">正版授权</h3>
+          <p style="margin:0;font-size:13px;line-height:1.43;color:var(--muted-foreground);">100% 版权免费</p>
+        </div>
+        <!-- Signal 2 -->
+        <div class="flex flex-col items-center gap-2 text-center md:border-l" style="padding:32px 24px;border-color:var(--border);">
+          <div class="inline-flex items-center justify-center" style="width:36px;height:36px;color:var(--primary);">
+            <i data-lucide="lock" style="width:36px;height:36px;stroke-width:1.4;"></i>
+          </div>
+          <h3 style="margin:6px 0 0;font-size:17px;font-weight:600;line-height:1.2;color:var(--foreground);">永久拥有</h3>
+          <p style="margin:0;font-size:13px;line-height:1.43;color:var(--muted-foreground);">一次下载终身使用</p>
+        </div>
+        <!-- Signal 3 -->
+        <div class="flex flex-col items-center gap-2 text-center md:border-l" style="padding:32px 24px;border-color:var(--border);">
+          <div class="inline-flex items-center justify-center" style="width:36px;height:36px;color:var(--primary);">
+            <i data-lucide="x-circle" style="width:36px;height:36px;stroke-width:1.4;"></i>
+          </div>
+          <h3 style="margin:6px 0 0;font-size:17px;font-weight:600;line-height:1.2;color:var(--foreground);">随时取消</h3>
+          <p style="margin:0;font-size:13px;line-height:1.43;color:var(--muted-foreground);">无需绑定灵活订阅</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===== Footer ===== -->
+<footer style="background:var(--background-900);color:var(--text-400);font-size:12px;line-height:1.33;padding:40px 24px 24px;">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pb-6" style="border-bottom:1px solid var(--border);">
+      <!-- Footer Col 1 -->
+      <div>
+        <h5 style="margin:0 0 8px;font-size:12px;font-weight:600;color:var(--foreground);letter-spacing:0.01em;">产品</h5>
+        <ul class="flex flex-col gap-2" style="list-style:none;margin:0;padding:0;">
+          <li><a href="#" class="transition-colors duration-150" style="color:var(--text-400);font-size:12px;text-decoration:none;" onmouseover="this.style.textDecoration='underline';this.style.color='var(--foreground)'" onmouseout="this.style.textDecoration='none';this.style.color='var(--text-400)'">声音库</a></li>
+          <li><a href="#" class="transition-colors duration-150" style="color:var(--text-400);font-size:12px;text-decoration:none;" onmouseover="this.style.textDecoration='underline';this.style.color='var(--foreground)'" onmouseout="this.style.textDecoration='none';this.style.color='var(--text-400)'">插件</a></li>
+          <li><a href="#" data-dom-id="cta-pricing" class="transition-colors duration-150" style="color:var(--text-400);font-size:12px;text-decoration:none;" onmouseover="this.style.textDecoration='underline';this.style.color='var(--foreground)'" onmouseout="this.style.textDecoration='none';this.style.color='var(--text-400)'">定价方案</a></li>
+        </ul>
+      </div>
+      <!-- Footer Col 2 -->
+      <div>
+        <h5 style="margin:0 0 8px;font-size:12px;font-weight:600;color:var(--foreground);letter-spacing:0.01em;">资源</h5>
+        <ul class="flex flex-col gap-2" style="list-style:none;margin:0;padding:0;">
+          <li><a href="#" class="transition-colors duration-150" style="color:var(--text-400);font-size:12px;text-decoration:none;" onmouseover="this.style.textDecoration='underline';this.style.color='var(--foreground)'" onmouseout="this.style.textDecoration='none';this.style.color='var(--text-400)'">帮助中心</a></li>
+          <li><a href="#" class="transition-colors duration-150" style="color:var(--text-400);font-size:12px;text-decoration:none;" onmouseover="this.style.textDecoration='underline';this.style.color='var(--foreground)'" onmouseout="this.style.textDecoration='none';this.style.color='var(--text-400)'">创作者社区</a></li>
+          <li><a href="#" class="transition-colors duration-150" style="color:var(--text-400);font-size:12px;text-decoration:none;" onmouseover="this.style.textDecoration='underline';this.style.color='var(--foreground)'" onmouseout="this.style.textDecoration='none';this.style.color='var(--text-400)'">博客</a></li>
+        </ul>
+      </div>
+      <!-- Footer Col 3 -->
+      <div>
+        <h5 style="margin:0 0 8px;font-size:12px;font-weight:600;color:var(--foreground);letter-spacing:0.01em;">公司</h5>
+        <ul class="flex flex-col gap-2" style="list-style:none;margin:0;padding:0;">
+          <li><a href="#" class="transition-colors duration-150" style="color:var(--text-400);font-size:12px;text-decoration:none;" onmouseover="this.style.textDecoration='underline';this.style.color='var(--foreground)'" onmouseout="this.style.textDecoration='none';this.style.color='var(--text-400)'">关于我们</a></li>
+          <li><a href="#" class="transition-colors duration-150" style="color:var(--text-400);font-size:12px;text-decoration:none;" onmouseover="this.style.textDecoration='underline';this.style.color='var(--foreground)'" onmouseout="this.style.textDecoration='none';this.style.color='var(--text-400)'">联系方式</a></li>
+          <li><a href="#" class="transition-colors duration-150" style="color:var(--text-400);font-size:12px;text-decoration:none;" onmouseover="this.style.textDecoration='underline';this.style.color='var(--foreground)'" onmouseout="this.style.textDecoration='none';this.style.color='var(--text-400)'">加入我们</a></li>
+        </ul>
+      </div>
+      <!-- Footer Col 4 -->
+      <div>
+        <h5 style="margin:0 0 8px;font-size:12px;font-weight:600;color:var(--foreground);letter-spacing:0.01em;">法律</h5>
+        <ul class="flex flex-col gap-2" style="list-style:none;margin:0;padding:0;">
+          <li><a href="#" class="transition-colors duration-150" style="color:var(--text-400);font-size:12px;text-decoration:none;" onmouseover="this.style.textDecoration='underline';this.style.color='var(--foreground)'" onmouseout="this.style.textDecoration='none';this.style.color='var(--text-400)'">服务条款</a></li>
+          <li><a href="#" class="transition-colors duration-150" style="color:var(--text-400);font-size:12px;text-decoration:none;" onmouseover="this.style.textDecoration='underline';this.style.color='var(--foreground)'" onmouseout="this.style.textDecoration='none';this.style.color='var(--text-400)'">隐私政策</a></li>
+          <li><a href="#" class="transition-colors duration-150" style="color:var(--text-400);font-size:12px;text-decoration:none;" onmouseover="this.style.textDecoration='underline';this.style.color='var(--foreground)'" onmouseout="this.style.textDecoration='none';this.style.color='var(--text-400)'">授权协议</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-wrap items-center justify-between pt-4 gap-4" style="border-top:1px solid var(--border);">
+      <span style="color:var(--text-500);font-size:12px;">Copyright &copy; 2025 声浪SoundWave. 保留所有权利。</span>
+    </div>
+  </div>
+</footer>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>
