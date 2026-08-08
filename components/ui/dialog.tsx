@@ -38,7 +38,7 @@ function useDialog() {
 function DialogTrigger({ children, asChild }: { children: React.ReactNode; asChild?: boolean }) {
   const { setOpen } = useDialog();
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement, {
+    return React.cloneElement(children as React.ReactElement<React.HTMLAttributes<HTMLElement>>, {
       onClick: () => setOpen(true),
     });
   }
