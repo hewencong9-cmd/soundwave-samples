@@ -45,7 +45,7 @@ function DialogTrigger({ children, asChild }: { children: React.ReactNode; asChi
   return <button onClick={() => setOpen(true)}>{children}</button>;
 }
 
-function DialogContent({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+function DialogContent({ className, children, ...props }: React.DialogHTMLAttributes<HTMLDialogElement>) {
   const { open, setOpen } = useDialog();
   const ref = React.useRef<HTMLDialogElement>(null);
 
