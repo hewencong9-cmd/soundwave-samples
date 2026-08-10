@@ -39,7 +39,7 @@ html {
 }
 
 body {
-  min-h-screen;
+  min-height: 100vh;
   margin: 0;
   background: var(--app-bg);
   color: var(--text-primary);

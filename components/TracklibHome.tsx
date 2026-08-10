@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Play, Heart, Download } from "lucide-react";
+import { Play, Pause, Heart, Download } from "lucide-react";
 import { samplePacks } from "@/lib/data";
 import { usePlayerStore, type Sound } from "@/stores/playerStore";
 
