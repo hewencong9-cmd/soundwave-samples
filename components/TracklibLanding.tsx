@@ -123,18 +123,18 @@ export function TracklibLanding() {
           >
             <Link
               href="/pricing"
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-semibold backdrop-blur-sm transition hover:bg-white/10"
+              className="mb-8 inline-flex items-center gap-0 overflow-hidden rounded-full border border-white/10 bg-white/5 text-xs font-bold backdrop-blur-sm transition hover:bg-white/10"
             >
-              <span className="rounded-full bg-emerald-500 px-2 py-0.5 text-[10px] font-bold text-black">
+              <span className="bg-emerald-500 px-3 py-1.5 text-[10px] font-black uppercase text-black">
                 节省 33%
               </span>
-              <span className="text-white/80">立即注册！</span>
+              <span className="px-3 py-1.5 text-white/80">立即注册！</span>
             </Link>
 
-            <h1 className="mb-6 text-5xl font-black leading-[0.95] tracking-tight md:text-6xl lg:text-7xl">
+            <h1 className="mb-6 text-5xl font-black uppercase leading-[0.92] tracking-tight md:text-6xl lg:text-7xl">
               唯一一个
               <br />
-              360 度全方位
+              360° 全方位
               <br />
               <span className="text-[var(--accent)]">采样平台</span>
             </h1>
@@ -146,13 +146,13 @@ export function TracklibLanding() {
             <div className="flex flex-wrap items-center gap-4">
               <Link
                 href="/sounds"
-                className="rounded-md bg-[var(--accent)] px-6 py-3 text-sm font-bold text-white transition hover:bg-[var(--accent-hover)]"
+                className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-bold text-white transition hover:bg-[var(--accent-hover)]"
               >
                 开始使用
               </Link>
               <Link
                 href="/sounds"
-                className="flex items-center gap-2 rounded-md border border-white/20 bg-white/5 px-5 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/10"
+                className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-white/10"
               >
                 <Play className="size-4" fill="currentColor" />
                 试听采样
@@ -179,16 +179,18 @@ export function TracklibLanding() {
                   <span className="rounded bg-[var(--accent)] px-1.5 py-0.5 text-black">SONG HIGHLIGHTS</span>
                 </div>
                 <div className="flex gap-3 overflow-hidden">
-                  {["/assets/pack-lofi.jpg", "/assets/pack-electronic.jpg", "/assets/hero-waveform.jpg"].map(
-                    (src, i) => (
-                      <div
-                        key={i}
-                        className="relative aspect-square w-16 shrink-0 overflow-hidden rounded-md"
-                      >
-                        <Image src={src} alt="" fill className="object-cover" />
-                      </div>
-                    )
-                  )}
+                  {[
+                    "/assets/pack-lofi.jpg",
+                    "/assets/pack-electronic.jpg",
+                    "/assets/hero-waveform.jpg",
+                  ].map((src, i) => (
+                    <div
+                      key={i}
+                      className="relative aspect-square w-16 shrink-0 overflow-hidden rounded-md"
+                    >
+                      <Image src={src} alt="" fill className="object-cover" />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -478,7 +480,7 @@ export function TracklibLanding() {
             </p>
             <Link
               href="/pricing"
-              className="inline-block rounded-md bg-[var(--accent)] px-8 py-4 text-sm font-bold text-white transition hover:bg-[var(--accent-hover)]"
+              className="inline-block rounded-full bg-[var(--accent)] px-8 py-4 text-sm font-bold text-white transition hover:bg-[var(--accent-hover)]"
             >
               开始使用
             </Link>
@@ -489,10 +491,7 @@ export function TracklibLanding() {
       {/* Footer */}
       <footer className="border-t border-white/5 py-12">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 md:flex-row md:px-6">
-          <Link href="/" className="flex items-center gap-2 text-lg font-black tracking-tight text-white">
-            <span className="flex h-8 w-8 items-center justify-center rounded-md bg-[var(--accent)] text-sm font-black text-white">
-              S
-            </span>
+          <Link href="/" className="text-lg font-black tracking-tight text-white">
             SOUNDWAVE
           </Link>
           <p className="text-sm text-white/40">
