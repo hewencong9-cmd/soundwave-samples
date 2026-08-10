@@ -124,6 +124,9 @@ export function TracklibHome() {
     }
   };
 
+  const nextSlide = () => setCurrentSlide((i) => (i + 1) % heroSlides.length);
+  const prevSlide = () => setCurrentSlide((i) => (i - 1 + heroSlides.length) % heroSlides.length);
+
   return (
     <div className="space-y-10 bg-black p-4 pb-28 text-white md:p-6">
       {/* Hero carousel */}

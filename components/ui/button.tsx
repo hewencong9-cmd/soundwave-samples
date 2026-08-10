@@ -2,12 +2,12 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = {
-  default: "bg-white text-zinc-900 hover:bg-white/90",
-  destructive: "bg-red-500 text-white hover:bg-red-500/90",
-  outline: "border border-white/20 bg-transparent hover:bg-white/10",
-  secondary: "bg-white/10 text-white hover:bg-white/20",
-  ghost: "hover:bg-white/10",
-  link: "text-cyan-300 underline-offset-4 hover:underline",
+  default: "bg-[var(--accent)] text-white hover:bg-[var(--accent-hover)]",
+  destructive: "bg-red-600 text-white hover:bg-red-500",
+  outline: "border border-[var(--border-subtle)] bg-transparent text-white hover:bg-[var(--surface-elevated)]",
+  secondary: "bg-[var(--surface-elevated)] text-white hover:bg-[var(--surface-highlight)]",
+  ghost: "text-[var(--text-secondary)] hover:bg-[var(--surface-elevated)] hover:text-white",
+  link: "text-[var(--accent)] underline-offset-4 hover:underline",
 };
 
 const buttonSizes = {
@@ -29,7 +29,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         className={cn(
-          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 disabled:pointer-events-none disabled:opacity-50",
+          "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] disabled:pointer-events-none disabled:opacity-50",
           buttonVariants[variant],
           buttonSizes[size],
           className
