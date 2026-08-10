@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Header } from "@/components/Header";
-import { AudioPlayer } from "@/components/AudioPlayer";
+import { ClientShell } from "@/components/ClientShell";
 
 export const metadata: Metadata = {
-  title: "SoundWave | 中国年轻制作人的音乐采样库",
-  description: "暗色玻璃拟态的在线音乐采样库，面向 Lofi、Chill 与未来感音乐制作。",
+  title: "SoundWave | 360° 采样平台",
+  description: "像 Tracklib 一样浏览、采样、创作。面向 Lofi、Chill、Trap 与未来感音乐制作。",
 };
 
 export default function RootLayout({
@@ -15,10 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-CN" className="dark">
-      <body className="min-h-screen bg-[#201d23] text-white antialiased">
-        <Header />
-        {children}
-        <AudioPlayer />
+      <body className="bg-black text-white antialiased">
+        <ClientShell>{children}</ClientShell>
       </body>
     </html>
   );

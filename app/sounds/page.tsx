@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Download, Heart, Pause, Play, SlidersHorizontal } from "lucide-react";
+import { Download, Heart, Pause, Play, Search, SlidersHorizontal } from "lucide-react";
 import { motion } from "framer-motion";
 import { usePlayerStore, type Sound } from "@/stores/playerStore";
 import { Badge } from "@/components/ui/badge";
@@ -97,23 +97,25 @@ export default function SoundsPage() {
   };
 
   return (
-    <main className="relative min-h-screen bg-[#201d23] px-4 py-6 text-white md:px-6">
+    <main className="min-h-full bg-black p-4 pb-28 text-white md:p-6">
       <div className="mx-auto max-w-7xl space-y-6">
         <div className="space-y-2">
           <h1 className="text-2xl font-bold md:text-3xl">采样浏览器</h1>
-          <p className="text-sm text-white/60">搜索、筛选、试听、收藏和下载高质量采样</p>
+          <p className="text-sm text-[var(--text-secondary)]">搜索、筛选、试听、收藏和下载高质量采样</p>
         </div>
 
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="relative max-w-md flex-1">
+            <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[var(--text-muted)]" />
             <Input
               placeholder="搜索采样、Loop、BPM、Key..."
               value={query}
               onChange={(e) => setQuery(e.target.value)}
+              className="h-10 rounded-md border-[var(--border-subtle)] bg-[var(--surface)] pl-9 text-white placeholder:text-[var(--text-muted)] focus-visible:ring-[var(--accent)]"
             />
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="secondary" className="h-9 gap-2 px-3">
+            <Badge variant="secondary" className="h-9 gap-2 border-[var(--border-subtle)] bg-[var(--surface-elevated)] px-3 text-white">
               <SlidersHorizontal size={14} /> 筛选
             </Badge>
             {filterGroups.map((group) =>
@@ -123,10 +125,10 @@ export default function SoundsPage() {
                   <button
                     key={value}
                     onClick={() => toggleFilter(value)}
-                    className={`rounded-full px-3 py-2 text-xs font-bold transition ${
+                    className={`rounded-md px-3 py-2 text-xs font-bold transition ${
                       active
-                        ? "bg-white text-zinc-900"
-                        : "border border-white/10 bg-white/5 text-white/70 hover:bg-white/10"
+                        ? "bg-white text-black"
+                        : "border border-[var(--border-subtle)] bg-[var(--surface)] text-[var(--text-secondary)] hover:bg-[var(--surface-elevated)] hover:text-white"
                     }`}
                   >
                     {value}
@@ -137,7 +139,7 @@ export default function SoundsPage() {
             {activeFilters.length > 0 && (
               <button
                 onClick={() => setActiveFilters([])}
-                className="text-xs text-white/50 hover:text-white"
+                className="text-xs text-[var(--text-muted)] hover:text-white"
               >
                 清空 ({activeFilters.length})
               </button>
@@ -145,7 +147,7 @@ export default function SoundsPage() {
           </div>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-2">
           {filteredSounds.map((sound, index) => {
             const isCurrent = currentSound?.id === sound.id;
             const isLiked = likedIds.includes(sound.id);
@@ -156,86 +158,84 @@ export default function SoundsPage() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className={`rounded-2xl border p-4 transition ${
+                className={`flex items-center gap-4 rounded-xl border p-3 transition ${
                   isCurrent
-                    ? "border-cyan-300/50 bg-cyan-300/10"
-                    : "border-white/10 bg-white/5 hover:bg-white/8"
+                    ? "border-[var(--accent)]/50 bg-[var(--accent)]/10"
+                    : "border-[var(--border-subtle)] bg-[var(--surface)] hover:bg-[var(--surface-elevated)]"
                 }`}
               >
-                <div className="flex flex-col gap-4 lg:flex-row lg:items-center">
+                <button
+                  onClick={() => playSound(sound)}
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white text-black transition hover:scale-105"
+                >
+                  {isCurrent && isPlaying ? (
+                    <Pause size={18} fill="currentColor" />
+                  ) : (
+                    <Play size={18} fill="currentColor" />
+                  )}
+                </button>
+
+                <div className="min-w-0 flex-1">
+                  <div className="mb-1 flex items-center gap-2">
+                    <h3 className="font-semibold">{sound.title}</h3>
+                    <span className="text-xs text-[var(--text-muted)]">{sound.pack}</span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--text-secondary)]">
+                    <Badge variant="outline" className="border-[var(--border-subtle)] text-[var(--text-secondary)]">{sound.type}</Badge>
+                    <span>{sound.bpm} BPM</span>
+                    <span>{sound.key}</span>
+                    <span>{sound.length}</span>
+                    {sound.tags.map((tag) => (
+                      <span key={tag} className="text-[var(--accent)]">
+                        #{tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="hidden flex-1 lg:block">
+                  <div className="flex h-10 items-center gap-1 opacity-50">
+                    {Array.from({ length: 24 }).map((_, i) => (
+                      <motion.span
+                        key={i}
+                        className="w-1 flex-1 rounded-full bg-white/50"
+                        animate={
+                          isCurrent && isPlaying
+                            ? { height: ["20%", "80%", "40%", "70%", "30%"] }
+                            : { height: `${20 + ((i * 17 + sound.bpm) % 60)}%` }
+                        }
+                        transition={
+                          isCurrent && isPlaying
+                            ? {
+                                duration: 0.8 + (i % 5) * 0.1,
+                                repeat: Infinity,
+                                repeatType: "reverse",
+                                ease: "easeInOut",
+                              }
+                            : undefined
+                        }
+                        style={
+                          !(isCurrent && isPlaying)
+                            ? { height: `${20 + ((i * 17 + sound.bpm) % 60)}%` }
+                            : undefined
+                        }
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2">
                   <button
-                    onClick={() => playSound(sound)}
-                    className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white text-zinc-900"
+                    onClick={() => toggleLike(sound.id)}
+                    className={`grid h-9 w-9 place-items-center rounded-full transition ${
+                      isLiked ? "bg-[var(--accent)]/20 text-[var(--accent)]" : "bg-[var(--surface-elevated)] text-[var(--text-secondary)] hover:bg-[var(--surface-highlight)] hover:text-white"
+                    }`}
                   >
-                    {isCurrent && isPlaying ? (
-                      <Pause size={18} fill="currentColor" />
-                    ) : (
-                      <Play size={18} fill="currentColor" />
-                    )}
+                    <Heart size={16} fill={isLiked ? "currentColor" : "none"} />
                   </button>
-
-                  <div className="min-w-0 flex-1">
-                    <div className="mb-1 flex items-center gap-2">
-                      <h3 className="font-bold">{sound.title}</h3>
-                      <span className="text-xs text-white/50">{sound.pack}</span>
-                    </div>
-                    <div className="flex flex-wrap items-center gap-2 text-xs text-white/60">
-                      <Badge variant="outline">{sound.type}</Badge>
-                      <span>{sound.bpm} BPM</span>
-                      <span>{sound.key}</span>
-                      <span>{sound.length}</span>
-                      {sound.tags.map((tag) => (
-                        <span key={tag} className="text-cyan-300/80">
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="hidden flex-1 lg:block">
-                    <div className="flex h-10 items-center gap-1 opacity-40">
-                      {Array.from({ length: 24 }).map((_, i) => (
-                        <motion.span
-                          key={i}
-                          className="w-1 flex-1 rounded-full bg-white/50"
-                          animate={
-                            isCurrent && isPlaying
-                              ? { height: ["20%", "80%", "40%", "70%", "30%"] }
-                              : { height: `${20 + ((i * 17 + sound.bpm) % 60)}%` }
-                          }
-                          transition={
-                            isCurrent && isPlaying
-                              ? {
-                                  duration: 0.8 + (i % 5) * 0.1,
-                                  repeat: Infinity,
-                                  repeatType: "reverse",
-                                  ease: "easeInOut",
-                                }
-                              : undefined
-                          }
-                          style={
-                            !(isCurrent && isPlaying)
-                              ? { height: `${20 + ((i * 17 + sound.bpm) % 60)}%` }
-                              : undefined
-                          }
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => toggleLike(sound.id)}
-                      className={`grid h-9 w-9 place-items-center rounded-full transition ${
-                        isLiked ? "bg-pink-500/20 text-pink-300" : "bg-white/10 text-white/70 hover:bg-white/20"
-                      }`}
-                    >
-                      <Heart size={16} fill={isLiked ? "currentColor" : "none"} />
-                    </button>
-                    <button className="grid h-9 w-9 place-items-center rounded-full bg-white/10 text-white/70 hover:bg-white/20">
-                      <Download size={16} />
-                    </button>
-                  </div>
+                  <button className="grid h-9 w-9 place-items-center rounded-full bg-[var(--surface-elevated)] text-[var(--text-secondary)] transition hover:bg-[var(--surface-highlight)] hover:text-white">
+                    <Download size={16} />
+                  </button>
                 </div>
               </motion.div>
             );

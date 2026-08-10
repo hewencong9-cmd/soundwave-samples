@@ -1,5 +1,5 @@
-import { SoundWaveHome } from "@/components/SoundWaveHome";
+import { TracklibLanding } from "@/components/TracklibLanding";
 
 export default function Home() {
-  return <SoundWaveHome />;
+  return <TracklibLanding />;
 }
