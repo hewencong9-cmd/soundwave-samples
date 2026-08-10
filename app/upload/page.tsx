@@ -5,7 +5,6 @@ import { UploadCloud } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 const tags = ["Lofi", "Chill", "Trap", "Future Bass", "鼓组", "键盘", "人声", "贝斯"];
 
@@ -19,11 +18,11 @@ export default function UploadPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#201d23] px-4 py-8 text-white md:px-6">
+    <main className="min-h-full bg-black p-4 pb-28 text-white md:p-6">
       <div className="mx-auto max-w-2xl space-y-6">
         <div className="space-y-2">
           <h1 className="text-2xl font-bold md:text-3xl">上传采样</h1>
-          <p className="text-white/60">分享你的声音，让其他制作人发现你的作品</p>
+          <p className="text-[var(--text-secondary)]">分享你的声音，让其他制作人发现你的作品</p>
         </div>
 
         <Card>
@@ -34,20 +33,20 @@ export default function UploadPage() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <label className="text-sm font-medium">采样标题</label>
-              <Input placeholder="例如：雨夜 Rhodes Loop" />
+              <Input placeholder="例如：雨夜 Rhodes Loop" className="border-[var(--border-subtle)] bg-[var(--surface)] text-white placeholder:text-[var(--text-muted)] focus-visible:ring-[var(--accent)]" />
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium">所属采样包</label>
-              <Input placeholder="例如：Late Night Lofi" />
+              <Input placeholder="例如：Late Night Lofi" className="border-[var(--border-subtle)] bg-[var(--surface)] text-white placeholder:text-[var(--text-muted)] focus-visible:ring-[var(--accent)]" />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <label className="text-sm font-medium">BPM</label>
-                <Input type="number" placeholder="82" />
+                <Input type="number" placeholder="82" className="border-[var(--border-subtle)] bg-[var(--surface)] text-white placeholder:text-[var(--text-muted)] focus-visible:ring-[var(--accent)]" />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium">Key</label>
-                <Input placeholder="A minor" />
+                <Input placeholder="A minor" className="border-[var(--border-subtle)] bg-[var(--surface)] text-white placeholder:text-[var(--text-muted)] focus-visible:ring-[var(--accent)]" />
               </div>
             </div>
             <div className="space-y-2">
@@ -57,10 +56,10 @@ export default function UploadPage() {
                   <button
                     key={tag}
                     onClick={() => toggleTag(tag)}
-                    className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
+                    className={`rounded-md px-3 py-1.5 text-xs font-medium transition ${
                       selectedTags.includes(tag)
-                        ? "bg-cyan-300 text-zinc-900"
-                        : "border border-white/10 bg-white/5 text-white/70 hover:bg-white/10"
+                        ? "bg-white text-black"
+                        : "border border-[var(--border-subtle)] bg-[var(--surface)] text-[var(--text-secondary)] hover:bg-[var(--surface-elevated)] hover:text-white"
                     }`}
                   >
                     {tag}
@@ -77,10 +76,10 @@ export default function UploadPage() {
             <CardDescription>支持 WAV、MP3、FLAC 格式，最大 50MB</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-white/20 bg-white/5 py-12">
-              <UploadCloud className="size-10 text-white/50" />
-              <p className="text-sm text-white/70">拖拽文件到此处，或点击上传</p>
-              <Button variant="outline" className="rounded-full border-white/20">
+            <div className="flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-[var(--border-subtle)] bg-[var(--surface)] py-12">
+              <UploadCloud className="size-10 text-[var(--text-muted)]" />
+              <p className="text-sm text-[var(--text-secondary)]">拖拽文件到此处，或点击上传</p>
+              <Button variant="outline" className="rounded-md border-[var(--border-subtle)]">
                 选择文件
               </Button>
             </div>
@@ -88,10 +87,10 @@ export default function UploadPage() {
         </Card>
 
         <div className="flex justify-end gap-3">
-          <Button variant="ghost" className="rounded-full">
+          <Button variant="ghost" className="rounded-md">
             保存草稿
           </Button>
-          <Button className="rounded-full">发布采样</Button>
+          <Button className="rounded-md">发布采样</Button>
         </div>
       </div>
     </main>

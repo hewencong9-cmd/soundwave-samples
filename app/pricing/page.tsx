@@ -37,11 +37,11 @@ const plans = [
 
 export default function PricingPage() {
   return (
-    <main className="min-h-screen bg-[#201d23] px-4 py-12 text-white md:px-6">
+    <main className="min-h-full bg-black p-4 pb-28 text-white md:p-6">
       <div className="mx-auto max-w-6xl space-y-10">
         <div className="text-center">
           <h1 className="text-3xl font-bold md:text-4xl">选择你的创作计划</h1>
-          <p className="mx-auto mt-3 max-w-2xl text-white/60">
+          <p className="mx-auto mt-3 max-w-2xl text-[var(--text-secondary)]">
             无限制访问高质量采样，随时取消，为你的下一段 Beat 做好准备。
           </p>
         </div>
@@ -56,11 +56,11 @@ export default function PricingPage() {
             >
               <Card
                 className={`relative h-full ${
-                  plan.popular ? "border-cyan-300/50 bg-cyan-300/5" : ""
+                  plan.popular ? "border-[var(--accent)]/50 bg-[var(--accent)]/5" : ""
                 }`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-cyan-300 px-3 py-1 text-xs font-bold text-zinc-900">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[var(--accent)] px-3 py-1 text-xs font-bold text-white">
                     最受欢迎
                   </div>
                 )}
@@ -69,24 +69,21 @@ export default function PricingPage() {
                   <CardDescription>{plan.description}</CardDescription>
                   <div className="mt-4 flex items-baseline justify-center">
                     <span className="text-4xl font-bold">{plan.price}</span>
-                    <span className="text-white/50">{plan.period}</span>
+                    <span className="text-[var(--text-muted)]">{plan.period}</span>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <ul className="space-y-3">
                     {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-center gap-2 text-sm text-white/80">
-                        <Check className="size-4 text-cyan-300" />
+                      <li key={feature} className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
+                        <Check className="size-4 text-[var(--accent)]" />
                         {feature}
                       </li>
                     ))}
                   </ul>
                   <Button
-                    className={`w-full rounded-full ${
-                      plan.popular
-                        ? "bg-cyan-300 text-zinc-900 hover:bg-cyan-300/90"
-                        : ""
-                    }`}
+                    variant={plan.popular ? "default" : "outline"}
+                    className="w-full rounded-md"
                   >
                     {plan.cta}
                   </Button>
