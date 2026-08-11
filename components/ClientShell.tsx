@@ -8,12 +8,37 @@ import { AppPlayer } from "@/components/AppPlayer";
 import { MarketingHeader } from "@/components/MarketingHeader";
 
 function AppShell({ children }: { children: React.ReactNode }) {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-black text-white antialiased">
-      <AppSidebar />
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+      
+      {/* Sidebar */}
+      <div className={`
+        fixed inset-y-0 left-0 z-50 transform transition-transform duration-300 md:relative md:translate-x-0
+        ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
+      `}>
+        <AppSidebar onNavigate={() => setSidebarOpen(false)} />
+      </div>
+      
       <div className="flex flex-1 flex-col">
-        <AppHeader />
-        <main className="flex-1 overflow-y-auto bg-black">{children}</main>
+        <AppHeader 
+          onMenuToggle={() => setSidebarOpen(!sidebarOpen)} 
+          sidebarOpen={sidebarOpen}
+        />
+        <main 
+          className="flex-1 overflow-y-auto bg-black"
+          onClick={() => sidebarOpen && setSidebarOpen(false)}
+        >
+          {children}
+        </main>
         <AppPlayer />
       </div>
     </div>
