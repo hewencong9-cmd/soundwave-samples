@@ -50,6 +50,21 @@ export function AppPlayer() {
   const isSeekingRef = useRef(false);
   const prevSoundIdRef = useRef<string | null>(null);
 
+  const handleTimeUpdate = useCallback(() => {
+    if (audioRef.current && !isSeekingRef.current) {
+      setCurrentTime(audioRef.current.currentTime);
+    }
+  }, [setCurrentTime]);
+
+  const handleLoadedMetadata = useCallback(() => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration);
+    }
+  }, [setDuration]);
+
+  const handlePlay = useCallback(() => setIsPlaying(true), [setIsPlaying]);
+  const handlePause = useCallback(() => setIsPlaying(false), [setIsPlaying]);
+
   const initAudio = useCallback((url: string) => {
     if (audioRef.current) {
       audioRef.current.pause();
@@ -70,22 +85,7 @@ export function AppPlayer() {
     audioRef.current.addEventListener("play", handlePlay);
     audioRef.current.addEventListener("pause", handlePause);
     audioRef.current.load();
-  }, [volume, playNext]);
-
-  const handleTimeUpdate = () => {
-    if (audioRef.current && !isSeekingRef.current) {
-      setCurrentTime(audioRef.current.currentTime);
-    }
-  };
-
-  const handleLoadedMetadata = () => {
-    if (audioRef.current) {
-      setDuration(audioRef.current.duration);
-    }
-  };
-
-  const handlePlay = () => setIsPlaying(true);
-  const handlePause = () => setIsPlaying(false);
+  }, [volume, playNext, handleTimeUpdate, handleLoadedMetadata, handlePlay, handlePause]);
 
   useEffect(() => {
     if (!currentSound) {
@@ -110,10 +110,7 @@ export function AppPlayer() {
     if (isPlaying && audioRef.current) {
       audioRef.current.play().catch(() => setIsPlaying(false));
     }
-
-    return () => {
-    };
-  }, [currentSound, isPlaying, initAudio, setIsPlaying]);
+  }, [currentSound, isPlaying, initAudio, setIsPlaying, playNext, handleTimeUpdate, handleLoadedMetadata, handlePlay, handlePause]);
 
   useEffect(() => {
     if (!audioRef.current) return;
@@ -185,7 +182,7 @@ export function AppPlayer() {
     <motion.div
       initial={{ y: 100 }}
       animate={{ y: 0 }}
-      className="flex h-[var(--player-height)] flex-shrink-0 items-center gap-3 border-t border-[var(--border-subtle)] bg-[var(--surface)] px-3 md:gap-4 md:px-6"
+      className="fixed bottom-0 left-0 right-0 z-50 flex h-[var(--player-height)] items-center gap-3 border-t border-[var(--border-subtle)] bg-[var(--surface)] px-3 md:gap-4 md:px-6"
       aria-label="试听播放器"
     >
       {/* Track info */}
@@ -233,7 +230,7 @@ export function AppPlayer() {
             className="flex h-8 w-8 md:h-9 md:w-9 shrink-0 items-center justify-center rounded-full bg-white text-black transition hover:scale-105"
             aria-label={isPlaying ? "暂停" : "播放"}
           >
-            {isPlaying ? <Pause className="size-3.5 md:size-4" fill="currentColor" /> : <Play className="size-3.5 md:size-4" fill="currentColor" />}
+            {isPlaying ? <Pause className="size-3.5 md:size-4" fill="currentColor" /> : <Play className="size-3.5 md:size-4" fill="currentColor" className="ml-0.5" />}
           </button>
           <button
             onClick={playNext}

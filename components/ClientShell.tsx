@@ -22,7 +22,7 @@ function AppShell({ children }: { children: React.ReactNode }) {
       
       {/* Sidebar */}
       <div className={`
-        fixed inset-y-0 left-0 z-50 transform transition-transform duration-300 md:relative md:translate-x-0
+        fixed inset-y-0 left-0 z-30 transform transition-transform duration-300 md:relative md:translate-x-0
         ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
       `}>
         <AppSidebar onNavigate={() => setSidebarOpen(false)} />
@@ -34,13 +34,13 @@ function AppShell({ children }: { children: React.ReactNode }) {
           sidebarOpen={sidebarOpen}
         />
         <main 
-          className="flex-1 overflow-y-auto bg-black"
+          className="flex-1 overflow-y-auto bg-black pb-[var(--player-height)]"
           onClick={() => sidebarOpen && setSidebarOpen(false)}
         >
           {children}
         </main>
-        <AppPlayer />
       </div>
+      <AppPlayer />
     </div>
   );
 }
@@ -49,7 +49,8 @@ function MarketingShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen w-full bg-black text-white antialiased">
       <MarketingHeader />
-      <main>{children}</main>
+      <main className="pb-[var(--player-height)]">{children}</main>
+      <AppPlayer />
     </div>
   );
 }
